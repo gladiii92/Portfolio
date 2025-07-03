@@ -765,8 +765,8 @@
                     <li><a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
                 </ul>
                 <div class="lang-switcher">
-                    <button class="lang-btn" onclick="setLanguage('de')">🇩🇪 DE</button>
-                    <button class="lang-btn active" onclick="setLanguage('en')">🇬🇧 EN</button>
+                    <button class="lang-btn active" onclick="setLanguage('de')">🇩🇪 DE</button>
+                    <button class="lang-btn" onclick="setLanguage('en')">🇬🇧 EN</button>
                 </div>
             </div>
         </nav>
@@ -801,7 +801,9 @@
                                 <span class="tag">Algorithmic Trading</span>
                             </div>
                         </div>
-                        <p class="project-description">
+                        <p class="project-description" 
+                           data-de="Vollautomatisches Trading-System für den DAX mit zeitbasierten Strategien. Features: Dynamisches Risk Management (0.2% pro Trade), Trailing Stop-Loss, Break-Even Management und saisonale Filter. Backtested über mehrere Jahre mit konsistenten Ergebnissen."
+                           data-en="Fully automated trading system for DAX with time-based strategies. Features: Dynamic Risk Management (0.2% per trade), Trailing Stop-Loss, Break-Even Management and seasonal filters. Backtested over multiple years with consistent results.">
                             Vollautomatisches Trading-System für den DAX mit zeitbasierten Strategien. 
                             Features: Dynamisches Risk Management (0.2% pro Trade), Trailing Stop-Loss, 
                             Break-Even Management und saisonale Filter. Backtested über mehrere Jahre mit konsistenten Ergebnissen.
@@ -826,9 +828,11 @@ if(PositionGetDouble(POSITION_PRICE_OPEN) - PositionGetDouble(POSITION_PRICE_CUR
 }</code></pre>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">Code auf Anfrage</a>
+                            <a href="#" class="project-link" data-de="Code auf Anfrage" data-en="Code on Request">Code auf Anfrage</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('mql5-modal')">
+                        <button class="view-details-btn" onclick="openModal('mql5-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
                             Details ansehen →
                         </button>
                     </div>
@@ -843,7 +847,9 @@ if(PositionGetDouble(POSITION_PRICE_OPEN) - PositionGetDouble(POSITION_PRICE_CUR
                                 <span class="tag">Data Analysis</span>
                             </div>
                         </div>
-                        <p class="project-description">
+                        <p class="project-description"
+                           data-de="Umfassendes Analyse-Tool für S&P 500 Aktien. Automatisiertes Web-Scraping von Wikipedia, Batch-Download von Kursdaten, Risk-Return Analyse und Sektor-Korrelationen. Visualisiert die Top-Performer mit interaktiven Charts."
+                           data-en="Comprehensive analysis tool for S&P 500 stocks. Automated web scraping from Wikipedia, batch download of price data, risk-return analysis and sector correlations. Visualizes top performers with interactive charts.">
                             Umfassendes Analyse-Tool für S&P 500 Aktien. Automatisiertes Web-Scraping von Wikipedia,
                             Batch-Download von Kursdaten, Risk-Return Analyse und Sektor-Korrelationen.
                             Visualisiert die Top-Performer mit interaktiven Charts.
@@ -871,7 +877,9 @@ def analyze_stocks(tickers, industries, start_date, end_date):
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub</a>
                             <a href="#" class="project-link">Jupyter Notebook</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('sp500-modal')">
+                        <button class="view-details-btn" onclick="openModal('sp500-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
                             Details ansehen →
                         </button>
                     </div>
@@ -886,7 +894,9 @@ def analyze_stocks(tickers, industries, start_date, end_date):
                                 <span class="tag">FreeCodeCamp</span>
                             </div>
                         </div>
-                        <p class="project-description">
+                        <p class="project-description"
+                           data-de="Sammlung von 5 Zertifizierungs-Projekten aus dem FreeCodeCamp Scientific Computing Kurs: Arithmetic Formatter, Time Calculator, Budget App mit Visualisierung, Polygon Area Calculator und Probability Calculator mit Monte Carlo Simulation."
+                           data-en="Collection of 5 certification projects from the FreeCodeCamp Scientific Computing course: Arithmetic Formatter, Time Calculator, Budget App with visualization, Polygon Area Calculator and Probability Calculator with Monte Carlo simulation.">
                             Sammlung von 5 Zertifizierungs-Projekten aus dem FreeCodeCamp Scientific Computing Kurs:
                             Arithmetic Formatter, Time Calculator, Budget App mit Visualisierung, 
                             Polygon Area Calculator und Probability Calculator mit Monte Carlo Simulation.
@@ -915,7 +925,9 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub Repository</a>
                             <a href="https://www.freecodecamp.org/fcc4865215c-2804-4799-9a48-c7661b87fa65" class="project-link">FreeCodeCamp Profil</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('scientific-modal')">
+                        <button class="view-details-btn" onclick="openModal('scientific-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
                             Details ansehen →
                         </button>
                     </div>
@@ -930,7 +942,9 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                                 <span class="tag">Algorithms</span>
                             </div>
                         </div>
-                        <p class="project-description">
+                        <p class="project-description"
+                           data-de="Implementierung fortgeschrittener Algorithmen und Datenstrukturen: Binary Search Tree, Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations und mehr. Fokus auf Clean Code und Effizienz."
+                           data-en="Implementation of advanced algorithms and data structures: Binary Search Tree, Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations and more. Focus on clean code and efficiency.">
                             Implementierung fortgeschrittener Algorithmen und Datenstrukturen: Binary Search Tree,
                             Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations
                             und mehr. Fokus auf Clean Code und Effizienz.
@@ -955,7 +969,9 @@ def shortest_path(graph, start, target=''):
                         <div class="project-links">
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('algorithms-modal')">
+                        <button class="view-details-btn" onclick="openModal('algorithms-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
                             Details ansehen →
                         </button>
                     </div>
@@ -963,14 +979,16 @@ def shortest_path(graph, start, target=''):
                     <!-- Project 5: Gem Price Calculator -->
                     <div class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title">Edelstein Preisrechner</h3>
+                            <h3 class="project-title" data-de="Edelstein Preisrechner" data-en="Gem Price Calculator">Edelstein Preisrechner</h3>
                             <div class="project-tags">
                                 <span class="tag">JavaScript</span>
                                 <span class="tag">HTML/CSS</span>
                                 <span class="tag">Web App</span>
                             </div>
                         </div>
-                        <p class="project-description">
+                        <p class="project-description"
+                           data-de="Interaktive Web-Anwendung zur Berechnung von Edelsteinpreisen. Features: Verschiedene Edelsteintypen, Qualitätsstufen, Karatgewicht-Berechnung und responsive Design. Praktisches Tool für Juweliere und Sammler."
+                           data-en="Interactive web application for calculating gemstone prices. Features: Various gemstone types, quality levels, carat weight calculation and responsive design. Practical tool for jewelers and collectors.">
                             Interaktive Web-Anwendung zur Berechnung von Edelsteinpreisen. Features: Verschiedene Edelsteintypen,
                             Qualitätsstufen, Karatgewicht-Berechnung und responsive Design. Praktisches Tool für Juweliere und Sammler.
                         </p>
@@ -993,7 +1011,9 @@ function calculateGemPrice(gemType, quality, carats) {
                             <a href="https://gladiii92.github.io/Gem-Web-App/" class="project-link">Live Demo</a>
                             <a href="https://github.com/Gladiii92/Gem-Web-App" class="project-link">GitHub</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('gem-modal')">
+                        <button class="view-details-btn" onclick="openModal('gem-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
                             Details ansehen →
                         </button>
                     </div>
@@ -1013,12 +1033,12 @@ function calculateGemPrice(gemType, quality, carats) {
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
-        <h2 class="section-title">Technische Skills</h2>
+        <h2 class="section-title" data-de="Technische Skills" data-en="Technical Skills">Technische Skills</h2>
         <div class="skills-grid">
             <div class="skill-card">
                 <div class="skill-icon">🐍</div>
                 <h3>Python</h3>
-                <p>Grundlagen, OOP, Algorithmen</p>
+                <p data-de="Grundlagen, OOP, Algorithmen" data-en="Fundamentals, OOP, Algorithms">Grundlagen, OOP, Algorithmen</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">📊</div>
@@ -1028,7 +1048,7 @@ function calculateGemPrice(gemType, quality, carats) {
             <div class="skill-card">
                 <div class="skill-icon">💹</div>
                 <h3>Trading</h3>
-                <p>MQL5, MetaTrader 5, Backtesting</p>
+                <p data-de="MQL5, MetaTrader 5, Backtesting" data-en="MQL5, MetaTrader 5, Backtesting">MQL5, MetaTrader 5, Backtesting</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🌐</div>
@@ -1042,8 +1062,8 @@ function calculateGemPrice(gemType, quality, carats) {
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🧮</div>
-                <h3>Algorithmen</h3>
-                <p>Sortierung, Graphen, Datenstrukturen</p>
+                <h3 data-de="Algorithmen" data-en="Algorithms">Algorithmen</h3>
+                <p data-de="Sortierung, Graphen, Datenstrukturen" data-en="Sorting, Graphs, Data Structures">Sortierung, Graphen, Datenstrukturen</p>
             </div>
         </div>
     </section>
@@ -1051,7 +1071,8 @@ function calculateGemPrice(gemType, quality, carats) {
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <h2 class="section-title">Let's Connect</h2>
-        <p>Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!</p>
+        <p data-de="Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!" 
+           data-en="Interested in collaboration? Let's get in touch!">Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!</p>
         <div class="contact-links">
             <a href="https://github.com/Gladiii92" class="contact-link" target="_blank">GitHub</a>
             <a href="https://www.linkedin.com/in/david-heinke-b45057353/" class="contact-link" target="_blank">LinkedIn</a>
@@ -1322,7 +1343,7 @@ void LogPerformance() {
                         Der gezeigte Code demonstriert die technische Implementierung und Struktur des Systems.
                     </p>
                     <div class="project-links" style="display: flex; gap: 20px; margin-top: 20px;">
-                        <a href="#" class="project-link" style="padding: 15px 30px;">Code auf Anfrage</a>
+                        <a href="#" class="project-link" style="padding: 15px 30px;" data-de="Code auf Anfrage" data-en="Code on Request">Code auf Anfrage</a>
                     </div>
                 </div>
             </div>
@@ -2302,6 +2323,77 @@ print(f"|v1| = {v1.norm():.2f}")     # |v1| = 3.74</code></pre>
         </div>
     </div>
 
+    <!-- Gem Calculator Modal -->
+    <div class="modal" id="gem-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('gem-modal')">×</button>
+                <h2 class="modal-title">Edelstein Preisrechner</h2>
+                <div class="modal-meta">
+                    <span>📅 2024</span>
+                    <span>💎 Web Application</span>
+                    <span>🌐 Live Demo verfügbar</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Überblick -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Eine praktische Web-Anwendung zur Berechnung von Edelsteinpreisen. Entwickelt für Juweliere, Sammler und Händler, 
+                    die schnell und präzise Preise basierend auf Edelsteintyp, Qualität und Karatgewicht ermitteln möchten.</p>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="project-section">
+                    <h3 class="section-heading">Technologie Stack</h3>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Responsive Design</span>
+                        <span class="tech-badge">GitHub Pages</span>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="project-section">
+                    <h3 class="section-heading">Hauptfunktionen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">💎</div>
+                            <h4>Edelstein-Auswahl</h4>
+                            <p>Unterstützt verschiedene Edelsteintypen wie Diamanten, Rubine, Smaragde und mehr</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⭐</div>
+                            <h4>Qualitätsstufen</h4>
+                            <p>Drei Qualitätsstufen (Excellent, Good, Fair) mit entsprechenden Preismultiplikatoren</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚖️</div>
+                            <h4>Karat-Berechnung</h4>
+                            <p>Präzise Preisberechnung basierend auf Karatgewicht mit Echtzeit-Updates</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h4>Responsive Design</h4>
+                            <p>Optimiert für alle Geräte - Desktop, Tablet und Mobile</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Links</h3>
+                    <div class="project-links" style="display: flex; gap: 20px;">
+                        <a href="https://gladiii92.github.io/Gem-Web-App/" class="project-link" style="padding: 15px 30px;">Live Demo</a>
+                        <a href="https://github.com/Gladiii92/Gem-Web-App" class="project-link" style="padding: 15px 30px;">GitHub Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Particles Animation
         function createParticles() {
@@ -2427,50 +2519,25 @@ print(f"|v1| = {v1.norm():.2f}")     # |v1| = 3.74</code></pre>
             // Update button states
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
+                if (btn.textContent.includes(lang.toUpperCase())) {
+                    btn.classList.add('active');
+                }
             });
-            event.target.classList.add('active');
             
             // Update all elements with language data
             document.querySelectorAll('[data-de][data-en]').forEach(element => {
                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
                     element.placeholder = element.getAttribute(`data-${lang}`);
-                } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
-                    element.textContent = element.getAttribute(`data-${lang}`);
                 } else {
                     element.textContent = element.getAttribute(`data-${lang}`);
                 }
             });
-            
-            // Update specific sections
-            if (lang === 'en') {
-                // English translations
-                document.querySelector('.skills .section-title').textContent = 'Technical Skills';
-                document.querySelector('.contact .section-title').textContent = "Let's Connect";
-                document.querySelector('.contact p').textContent = "Interested in collaboration? Let's get in touch!";
-                
-                // Project descriptions
-                const projectDescriptions = {
-                    'mql5': 'Fully automated trading system for DAX with time-based strategies. Features: Dynamic Risk Management (0.2% per trade), Trailing Stop-Loss, Break-Even Management and seasonal filters.',
-                    'sp500': 'Comprehensive analysis tool for S&P 500 stocks. Automated web scraping from Wikipedia, batch download of price data, risk-return analysis and sector correlations.',
-                    'scientific': 'Collection of 5 certification projects from the FreeCodeCamp Scientific Computing course: Arithmetic Formatter, Time Calculator, Budget App with visualization, Polygon Area Calculator and Probability Calculator.',
-                    'algorithms': 'Implementation of advanced algorithms and data structures: Binary Search Tree, Vigenère Cipher, Dijkstra\'s Shortest Path, Merge Sort, Vector Space Operations and more.',
-                    'gem': 'Interactive web application for calculating gemstone prices. Features: Various gemstone types, quality levels, carat weight calculation and responsive design.'
-                };
-                
-                // Update project cards
-                document.querySelectorAll('.project-card').forEach((card, index) => {
-                    const descriptions = Object.values(projectDescriptions);
-                    if (descriptions[index]) {
-                        card.querySelector('.project-description').textContent = descriptions[index];
-                    }
-                });
-            } else {
-                // German (default)
-                document.querySelector('.skills .section-title').textContent = 'Technische Skills';
-                document.querySelector('.contact .section-title').textContent = "Let's Connect";
-                document.querySelector('.contact p').textContent = "Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!";
-            }
         }
+        
+        // Set initial language to German
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('de');
+        });
         
         // Modal Functions
         function openModal(modalId) {
