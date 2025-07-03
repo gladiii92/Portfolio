@@ -45,6 +45,12 @@
             align-items: center;
         }
 
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
         .logo {
             font-size: 24px;
             font-weight: bold;
@@ -67,6 +73,38 @@
 
         .nav-links a:hover {
             color: var(--primary);
+        }
+
+        /* Language Switcher */
+        .lang-switcher {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #333;
+            color: var(--text);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-btn.active {
+            background: var(--primary);
+            color: var(--bg-dark);
+            border-color: var(--primary);
         }
 
         /* Hero Section */
@@ -719,12 +757,18 @@
     <header>
         <nav>
             <div class="logo">Quant.Dev</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#projects">Projekte</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-            </ul>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="#home" data-de="Start" data-en="Home">Home</a></li>
+                    <li><a href="#projects" data-de="Projekte" data-en="Projects">Projekte</a></li>
+                    <li><a href="#skills" data-de="Skills" data-en="Skills">Skills</a></li>
+                    <li><a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
+                </ul>
+                <div class="lang-switcher">
+                    <button class="lang-btn" onclick="setLanguage('de')">🇩🇪 DE</button>
+                    <button class="lang-btn active" onclick="setLanguage('en')">🇬🇧 EN</button>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -732,14 +776,17 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1 class="floating">Quant Developer</h1>
-            <p>Python | Algorithmic Trading | Data Science</p>
-            <a href="#projects" class="cta-button">Projekte ansehen</a>
+            <p data-de="Python | Algorithmisches Trading | Data Science" 
+               data-en="Python | Algorithmic Trading | Data Science">Python | Algorithmic Trading | Data Science</p>
+            <a href="#projects" class="cta-button" 
+               data-de="Projekte ansehen" 
+               data-en="View Projects">Projekte ansehen</a>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
-        <h2 class="section-title">Meine Projekte</h2>
+        <h2 class="section-title" data-de="Meine Projekte" data-en="My Projects">Meine Projekte</h2>
         
         <div class="carousel-container">
             <div class="carousel-wrapper">
@@ -912,6 +959,44 @@ def shortest_path(graph, start, target=''):
                             Details ansehen →
                         </button>
                     </div>
+
+                    <!-- Project 5: Gem Price Calculator -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Edelstein Preisrechner</h3>
+                            <div class="project-tags">
+                                <span class="tag">JavaScript</span>
+                                <span class="tag">HTML/CSS</span>
+                                <span class="tag">Web App</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Interaktive Web-Anwendung zur Berechnung von Edelsteinpreisen. Features: Verschiedene Edelsteintypen,
+                            Qualitätsstufen, Karatgewicht-Berechnung und responsive Design. Praktisches Tool für Juweliere und Sammler.
+                        </p>
+                        <div class="code-preview">
+                            <pre><code>// Preisberechnung basierend auf Edelstein-Eigenschaften
+function calculateGemPrice(gemType, quality, carats) {
+    const basePrices = {
+        'diamond': { excellent: 5000, good: 3000, fair: 1500 },
+        'ruby': { excellent: 3000, good: 1800, fair: 900 },
+        'emerald': { excellent: 2500, good: 1500, fair: 750 }
+    };
+    
+    const basePrice = basePrices[gemType][quality];
+    const price = basePrice * carats * getQualityMultiplier(quality);
+    
+    return formatCurrency(price);
+}</code></pre>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://gladiii92.github.io/Gem-Web-App/" class="project-link">Live Demo</a>
+                            <a href="https://github.com/Gladiii92/Gem-Web-App" class="project-link">GitHub</a>
+                        </div>
+                        <button class="view-details-btn" onclick="openModal('gem-modal')">
+                            Details ansehen →
+                        </button>
+                    </div>
                 </div>
             </div>
             
@@ -933,32 +1018,32 @@ def shortest_path(graph, start, target=''):
             <div class="skill-card">
                 <div class="skill-icon">🐍</div>
                 <h3>Python</h3>
-                <p>NumPy, Pandas, Scikit-learn</p>
+                <p>Grundlagen, OOP, Algorithmen</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">📊</div>
                 <h3>Data Analysis</h3>
-                <p>Jupyter, Matplotlib, Plotly</p>
-            </div>
-            <div class="skill-card">
-                <div class="skill-icon">🤖</div>
-                <h3>Machine Learning</h3>
-                <p>TensorFlow, Keras, PyTorch</p>
+                <p>pandas, NumPy, matplotlib</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">💹</div>
                 <h3>Trading</h3>
-                <p>MQL5, Backtesting, Risk Management</p>
+                <p>MQL5, MetaTrader 5, Backtesting</p>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>Web Development</h3>
+                <p>HTML, CSS, JavaScript</p>
             </div>
             <div class="skill-card">
                 <div class="skill-icon">🗄️</div>
-                <h3>Databases</h3>
-                <p>SQL, PostgreSQL, MongoDB</p>
+                <h3>Version Control</h3>
+                <p>Git, GitHub</p>
             </div>
             <div class="skill-card">
-                <div class="skill-icon">⚡</div>
-                <h3>APIs</h3>
-                <p>REST, WebSockets, Trading APIs</p>
+                <div class="skill-icon">🧮</div>
+                <h3>Algorithmen</h3>
+                <p>Sortierung, Graphen, Datenstrukturen</p>
             </div>
         </div>
     </section>
@@ -2332,6 +2417,60 @@ print(f"|v1| = {v1.norm():.2f}")     # |v1| = 3.74</code></pre>
         }
         
         setTimeout(typeWriter, 500);
+        
+        // Language Switching
+        let currentLang = 'de';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update all elements with language data
+            document.querySelectorAll('[data-de][data-en]').forEach(element => {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = element.getAttribute(`data-${lang}`);
+                } else if (element.tagName === 'A' || element.tagName === 'BUTTON') {
+                    element.textContent = element.getAttribute(`data-${lang}`);
+                } else {
+                    element.textContent = element.getAttribute(`data-${lang}`);
+                }
+            });
+            
+            // Update specific sections
+            if (lang === 'en') {
+                // English translations
+                document.querySelector('.skills .section-title').textContent = 'Technical Skills';
+                document.querySelector('.contact .section-title').textContent = "Let's Connect";
+                document.querySelector('.contact p').textContent = "Interested in collaboration? Let's get in touch!";
+                
+                // Project descriptions
+                const projectDescriptions = {
+                    'mql5': 'Fully automated trading system for DAX with time-based strategies. Features: Dynamic Risk Management (0.2% per trade), Trailing Stop-Loss, Break-Even Management and seasonal filters.',
+                    'sp500': 'Comprehensive analysis tool for S&P 500 stocks. Automated web scraping from Wikipedia, batch download of price data, risk-return analysis and sector correlations.',
+                    'scientific': 'Collection of 5 certification projects from the FreeCodeCamp Scientific Computing course: Arithmetic Formatter, Time Calculator, Budget App with visualization, Polygon Area Calculator and Probability Calculator.',
+                    'algorithms': 'Implementation of advanced algorithms and data structures: Binary Search Tree, Vigenère Cipher, Dijkstra\'s Shortest Path, Merge Sort, Vector Space Operations and more.',
+                    'gem': 'Interactive web application for calculating gemstone prices. Features: Various gemstone types, quality levels, carat weight calculation and responsive design.'
+                };
+                
+                // Update project cards
+                document.querySelectorAll('.project-card').forEach((card, index) => {
+                    const descriptions = Object.values(projectDescriptions);
+                    if (descriptions[index]) {
+                        card.querySelector('.project-description').textContent = descriptions[index];
+                    }
+                });
+            } else {
+                // German (default)
+                document.querySelector('.skills .section-title').textContent = 'Technische Skills';
+                document.querySelector('.contact .section-title').textContent = "Let's Connect";
+                document.querySelector('.contact p').textContent = "Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!";
+            }
+        }
         
         // Modal Functions
         function openModal(modalId) {
