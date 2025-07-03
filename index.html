@@ -747,146 +747,172 @@
                     <!-- Project 1: MQL5 Trading Algorithmen -->
                     <div class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title">MQL5 Trading Algorithmen</h3>
+                            <h3 class="project-title">Automated DAX Trading System</h3>
                             <div class="project-tags">
                                 <span class="tag">MQL5</span>
-                                <span class="tag">Trading</span>
-                                <span class="tag">Automation</span>
+                                <span class="tag">MetaTrader 5</span>
+                                <span class="tag">Algorithmic Trading</span>
                             </div>
                         </div>
                         <p class="project-description">
-                            Automatisierte Handelsalgorithmen für MetaTrader 5. Implementation von verschiedenen Trading-Strategien
-                            mit Risk Management, Position Sizing und Performance Tracking.
+                            Vollautomatisches Trading-System für den DAX mit zeitbasierten Strategien. 
+                            Features: Dynamisches Risk Management (0.2% pro Trade), Trailing Stop-Loss, 
+                            Break-Even Management und saisonale Filter. Backtested über mehrere Jahre mit konsistenten Ergebnissen.
                         </p>
                         <div class="code-preview">
-                            <pre><code>// Example: Moving Average Crossover Strategy
-void OnTick() {
-    double ma_fast = iMA(_Symbol, 0, 20, 0, MODE_SMA, PRICE_CLOSE);
-    double ma_slow = iMA(_Symbol, 0, 50, 0, MODE_SMA, PRICE_CLOSE);
+                            <pre><code>// Risk Management & Position Sizing
+double calcLotsize(double stop){
+    double riskMoney = AccountInfoDouble(ACCOUNT_BALANCE)/(100/risk);
+    riskMoney = riskMoney / stop / SymbolInfoDouble(_Symbol,SYMBOL_TRADE_CONTRACT_SIZE);
     
-    if(ma_fast > ma_slow && !PositionSelect(_Symbol)) {
-        trade.Buy(0.1);
+    if(SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP) == 0.01){
+        riskMoney = NormalizeDouble(riskMoney, 2);
     }
+    return riskMoney;
+}
+
+// Breakeven & Trailing Stop Implementation
+if(PositionGetDouble(POSITION_PRICE_OPEN) - PositionGetDouble(POSITION_PRICE_CURRENT) > BE 
+   && PositionGetDouble(POSITION_SL) > PositionGetDouble(POSITION_PRICE_OPEN)){
+    trade.PositionModify(_Symbol, PositionGetDouble(POSITION_PRICE_OPEN) - SL_Push, 
+                        PositionGetDouble(POSITION_TP));
 }</code></pre>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Live Demo</a>
+                            <a href="#" class="project-link">Private Repository</a>
+                            <a href="#" class="project-link">Performance Report</a>
                         </div>
                         <button class="view-details-btn" onclick="openModal('mql5-modal')">
                             Details ansehen →
                         </button>
                     </div>
 
-                    <!-- Project 2: Scientific Computing Projects -->
+                    <!-- Project 2: S&P 500 Analysis -->
                     <div class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title">Scientific Computing with Python</h3>
+                            <h3 class="project-title">S&P 500 Stock Analysis Tool</h3>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
-                                <span class="tag">NumPy</span>
+                                <span class="tag">yfinance</span>
                                 <span class="tag">Data Analysis</span>
                             </div>
                         </div>
                         <p class="project-description">
-                            Sammlung von wissenschaftlichen Computing-Projekten aus dem FreeCodeCamp Kurs.
-                            Includes: Budget App, Time Calculator, Probability Calculator, und mehr.
+                            Umfassendes Analyse-Tool für S&P 500 Aktien. Automatisiertes Web-Scraping von Wikipedia,
+                            Batch-Download von Kursdaten, Risk-Return Analyse und Sektor-Korrelationen.
+                            Visualisiert die Top-Performer mit interaktiven Charts.
                         </p>
                         <div class="code-preview">
-                            <pre><code># Monte Carlo Simulation für Portfolio Optimization
-import numpy as np
-
-def monte_carlo_portfolio(returns, weights, days=252, simulations=10000):
-    mean_returns = returns.mean()
-    cov_matrix = returns.cov()
+                            <pre><code># Risk-Return Analysis mit Sharpe Ratio
+def analyze_stocks(tickers, industries, start_date, end_date):
+    # Download mit Retry-Logic und Rate Limiting
+    close, failed = download_ticker_data(tickers, start_date, end_date, batch_size=50)
     
-    results = np.zeros((simulations, 2))
-    for i in range(simulations):
-        portfolio_return = np.sum(mean_returns * weights) * days
-        portfolio_std = np.sqrt(np.dot(weights.T, np.dot(cov_matrix, weights))) * np.sqrt(days)
-        results[i] = [portfolio_return, portfolio_std]
+    # Performance Metriken berechnen
+    returns = close.pct_change().dropna()
+    annual_return = returns.mean() * 252 * 100
+    annual_risk = returns.std() * np.sqrt(252) * 100
     
-    return results</code></pre>
+    # Visualisierung der Top 20 Performer
+    summary = pd.DataFrame({
+        'Return': annual_return,
+        'Risk': annual_risk,
+        'Sharpe': annual_return / annual_risk,
+        'Industry': [industries.get(t, 'Unknown') for t in annual_return.index]
+    })</code></pre>
                         </div>
                         <div class="project-links">
                             <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Documentation</a>
+                            <a href="#" class="project-link">Jupyter Notebook</a>
+                        </div>
+                        <button class="view-details-btn" onclick="openModal('sp500-modal')">
+                            Details ansehen →
+                        </button>
+                    </div>
+
+                    <!-- Project 3: FreeCodeCamp Scientific Computing -->
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3 class="project-title">Scientific Computing Projects</h3>
+                            <div class="project-tags">
+                                <span class="tag">Python</span>
+                                <span class="tag">Algorithms</span>
+                                <span class="tag">FreeCodeCamp</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Sammlung von 5 Zertifizierungs-Projekten aus dem FreeCodeCamp Scientific Computing Kurs:
+                            Arithmetic Formatter, Time Calculator, Budget App mit Visualisierung, 
+                            Polygon Area Calculator und Probability Calculator mit Monte Carlo Simulation.
+                        </p>
+                        <div class="code-preview">
+                            <pre><code># Monte Carlo Probability Calculator
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
+    success = 0
+    
+    for _ in range(num_experiments):
+        copy_hat = Hat(**color_counts)
+        drawn_balls = copy_hat.draw(num_balls_drawn)
+        
+        # Check if all expected balls were drawn
+        all_match = True
+        for color, min_count in expected_balls.items():
+            if color_drawn.get(color, 0) < min_count:
+                all_match = False
+                break
+        if all_match:
+            success += 1
+    
+    return success / num_experiments</code></pre>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="project-link">GitHub Repository</a>
+                            <a href="#" class="project-link">FreeCodeCamp Profil</a>
                         </div>
                         <button class="view-details-btn" onclick="openModal('scientific-modal')">
                             Details ansehen →
                         </button>
                     </div>
 
-                    <!-- Project 3: Data Visualization Dashboard -->
+                    <!-- Project 4: Advanced Python Algorithms -->
                     <div class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title">Financial Data Visualization</h3>
+                            <h3 class="project-title">Advanced Algorithm Implementations</h3>
                             <div class="project-tags">
                                 <span class="tag">Python</span>
-                                <span class="tag">Plotly</span>
-                                <span class="tag">Dash</span>
+                                <span class="tag">Data Structures</span>
+                                <span class="tag">Algorithms</span>
                             </div>
                         </div>
                         <p class="project-description">
-                            Interaktives Dashboard zur Visualisierung von Finanzdaten. Real-time Preis-Charts,
-                            technische Indikatoren und Portfolio-Performance Tracking.
+                            Implementierung fortgeschrittener Algorithmen und Datenstrukturen: Binary Search Tree,
+                            Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations
+                            und mehr. Fokus auf Clean Code und Effizienz.
                         </p>
                         <div class="code-preview">
-                            <pre><code># Candlestick Chart mit Plotly
-import plotly.graph_objects as go
-
-fig = go.Figure(data=[go.Candlestick(x=df['Date'],
-                open=df['Open'],
-                high=df['High'],
-                low=df['Low'],
-                close=df['Close'])])
-
-fig.update_layout(
-    title='Stock Price Movement',
-    yaxis_title='Price',
-    xaxis_rangeslider_visible=False
-)</code></pre>
+                            <pre><code># Dijkstra's Shortest Path Algorithm
+def shortest_path(graph, start, target=''):
+    unvisited = list(graph)
+    distances = {node: 0 if node == start else float('inf') for node in graph}
+    paths = {node: [] for node in graph}
+    
+    while unvisited:
+        current = min(unvisited, key=distances.get)
+        for node, distance in graph[current]:
+            if distance + distances[current] < distances[node]:
+                distances[node] = distance + distances[current]
+                paths[node] = paths[current] + [node]
+        unvisited.remove(current)
+    
+    return distances, paths</code></pre>
                         </div>
                         <div class="project-links">
                             <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Live Dashboard</a>
+                            <a href="#" class="project-link">Documentation</a>
                         </div>
-                    </div>
-
-                    <!-- Project 4: Machine Learning Trading Bot -->
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">ML Trading Bot</h3>
-                            <div class="project-tags">
-                                <span class="tag">Python</span>
-                                <span class="tag">TensorFlow</span>
-                                <span class="tag">ML</span>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Machine Learning basierter Trading Bot mit LSTM Neural Networks für Preis-Vorhersagen
-                            und automatisierte Trading-Entscheidungen.
-                        </p>
-                        <div class="code-preview">
-                            <pre><code># LSTM Model for Price Prediction
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import LSTM, Dense, Dropout
-
-model = Sequential([
-    LSTM(50, return_sequences=True, input_shape=(X_train.shape[1], 1)),
-    Dropout(0.2),
-    LSTM(50, return_sequences=False),
-    Dropout(0.2),
-    Dense(25),
-    Dense(1)
-])
-
-model.compile(optimizer='adam', loss='mean_squared_error')</code></pre>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link">GitHub</a>
-                            <a href="#" class="project-link">Backtest Results</a>
-                        </div>
+                        <button class="view-details-btn" onclick="openModal('algorithms-modal')">
+                            Details ansehen →
+                        </button>
                     </div>
                 </div>
             </div>
@@ -956,18 +982,18 @@ model.compile(optimizer='adam', loss='mean_squared_error')</code></pre>
         <div class="modal-content">
             <div class="modal-header">
                 <button class="modal-close" onclick="closeModal('mql5-modal')">×</button>
-                <h2 class="modal-title">MQL5 Trading Algorithmen</h2>
+                <h2 class="modal-title">Automated DAX Trading System</h2>
                 <div class="modal-meta">
-                    <span>📅 2024-2025</span>
-                    <span>⏱️ 6 Monate Entwicklung</span>
-                    <span>📊 Live Trading</span>
+                    <span>📅 2023-2025</span>
+                    <span>⏱️ Live Trading seit 1 Jahr</span>
+                    <span>📊 MetaTrader 5</span>
                 </div>
             </div>
             <div class="modal-body">
                 <!-- Überblick -->
                 <div class="project-section">
                     <h3 class="section-heading">Projekt Überblick</h3>
-                    <p>Ein umfassendes Trading-System für MetaTrader 5, das verschiedene algorithmische Handelsstrategien implementiert. Das System nutzt fortgeschrittene technische Indikatoren, Machine Learning für Marktanalyse und ein robustes Risk Management Framework.</p>
+                    <p>Professionelles automatisiertes Trading-System für den DAX-Index auf MetaTrader 5. Das System nutzt zeitbasierte Strategien mit fortgeschrittenem Risk Management und saisonalen Filtern. Entwickelt mit umfangreichen Backtests und optimiert für verschiedene Marktbedingungen.</p>
                 </div>
 
                 <!-- Tech Stack -->
@@ -975,11 +1001,10 @@ model.compile(optimizer='adam', loss='mean_squared_error')</code></pre>
                     <h3 class="section-heading">Technologie Stack</h3>
                     <div class="tech-stack">
                         <span class="tech-badge">MQL5</span>
-                        <span class="tech-badge">Python Integration</span>
-                        <span class="tech-badge">MetaTrader 5 API</span>
-                        <span class="tech-badge">SQLite</span>
-                        <span class="tech-badge">REST API</span>
-                        <span class="tech-badge">WebSockets</span>
+                        <span class="tech-badge">MetaTrader 5</span>
+                        <span class="tech-badge">C++ ähnliche Syntax</span>
+                        <span class="tech-badge">Trade Library</span>
+                        <span class="tech-badge">Time Series Analysis</span>
                     </div>
                 </div>
 
@@ -988,24 +1013,24 @@ model.compile(optimizer='adam', loss='mean_squared_error')</code></pre>
                     <h3 class="section-heading">Hauptfunktionen</h3>
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <div class="feature-icon">📈</div>
-                            <h4>Multi-Strategy System</h4>
-                            <p>5 verschiedene Trading-Strategien: Mean Reversion, Momentum, Breakout, Arbitrage und ML-basierte Signale</p>
+                            <div class="feature-icon">⏰</div>
+                            <h4>Zeitbasierte Strategien</h4>
+                            <p>5 verschiedene Intraday-Strategien für jeden Wochentag mit optimierten Entry/Exit-Zeiten</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🛡️</div>
                             <h4>Risk Management</h4>
-                            <p>Dynamisches Position Sizing, Stop-Loss/Take-Profit Management, Maximum Drawdown Protection</p>
+                            <p>Dynamisches Position Sizing (0.2% Risk per Trade), automatisches Breakeven und Trailing Stop</p>
                         </div>
                         <div class="feature-card">
-                            <div class="feature-icon">🤖</div>
-                            <h4>Automatisierung</h4>
-                            <p>Vollautomatischer Handel mit manueller Override-Option, Auto-Rebalancing und Performance Tracking</p>
+                            <div class="feature-icon">📅</div>
+                            <h4>Saisonale Filter</h4>
+                            <p>Monatsbasierte Filter zur Vermeidung ungünstiger Marktphasen basierend auf historischen Daten</p>
                         </div>
                         <div class="feature-card">
-                            <div class="feature-icon">📊</div>
-                            <h4>Backtesting Engine</h4>
-                            <p>Historische Performance-Analyse, Walk-Forward-Optimierung, Monte Carlo Simulationen</p>
+                            <div class="feature-icon">🔄</div>
+                            <h4>Position Management</h4>
+                            <p>Automatisches Schließen bei Zeitablauf, Magic Number System für Multi-Strategy-Betrieb</p>
                         </div>
                     </div>
                 </div>
@@ -1015,201 +1040,169 @@ model.compile(optimizer='adam', loss='mean_squared_error')</code></pre>
                     <h3 class="section-heading">Code Beispiele</h3>
                     <div class="code-tabs">
                         <div class="tab-buttons">
-                            <button class="tab-button active" onclick="switchTab('mql5-modal', 'strategy')">Trading Strategy</button>
+                            <button class="tab-button active" onclick="switchTab('mql5-modal', 'structure')">System Structure</button>
                             <button class="tab-button" onclick="switchTab('mql5-modal', 'risk')">Risk Management</button>
-                            <button class="tab-button" onclick="switchTab('mql5-modal', 'ml')">ML Integration</button>
+                            <button class="tab-button" onclick="switchTab('mql5-modal', 'filters')">Seasonal Filters</button>
                         </div>
                         
-                        <div class="tab-content active" id="mql5-modal-strategy">
+                        <div class="tab-content active" id="mql5-modal-structure">
                             <div class="code-block">
                                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                                <pre><code>// Advanced Momentum Strategy with Multiple Timeframe Analysis
-class CMomentumStrategy : public CStrategy {
-private:
-    double m_rsi_values[];
-    double m_macd_main[];
-    double m_macd_signal[];
-    int m_rsi_handle;
-    int m_macd_handle;
+                                <pre><code>// Main Trading Logic Structure
+void OnTick(){
+    if(trade.RequestMagic() != expert_ID) 
+        trade.SetExpertMagicNumber(expert_ID);
     
-public:
-    virtual bool Init() {
-        m_rsi_handle = iRSI(_Symbol, PERIOD_H1, 14, PRICE_CLOSE);
-        m_macd_handle = iMACD(_Symbol, PERIOD_H1, 12, 26, 9, PRICE_CLOSE);
-        
-        if(m_rsi_handle == INVALID_HANDLE || m_macd_handle == INVALID_HANDLE) {
-            return false;
+    time = TimeCurrent();
+    TimeToStruct(time, time_struct);
+    
+    // Wochentag-basierte Strategieauswahl
+    switch(time_struct.day_of_week) {
+        case 1: // Montag
+            ExecuteMondayStrategy();
+            break;
+        case 2: // Dienstag
+            ExecuteTuesdayStrategy();
+            break;
+        // ... weitere Tage
+    }
+}
+
+void ExecuteMondayStrategy() {
+    // Position Management
+    if(myposition.SelectByMagic(_Symbol, expert_ID)){
+        // Zeit-basiertes Schließen
+        if(time_struct.hour >= TimeCloseHour1 && 
+           time_struct.min >= TimeCloseMin1){
+            trade.PositionClose(_Symbol);
         }
         
-        ArraySetAsSeries(m_rsi_values, true);
-        ArraySetAsSeries(m_macd_main, true);
-        ArraySetAsSeries(m_macd_signal, true);
-        
-        return true;
+        // Breakeven Management
+        CheckBreakeven(BE1, SL_Push1);
     }
     
-    virtual ENUM_SIGNAL GetSignal() {
-        // Copy indicator values
-        if(CopyBuffer(m_rsi_handle, 0, 0, 3, m_rsi_values) != 3) return SIGNAL_NONE;
-        if(CopyBuffer(m_macd_handle, 0, 0, 3, m_macd_main) != 3) return SIGNAL_NONE;
-        if(CopyBuffer(m_macd_handle, 1, 0, 3, m_macd_signal) != 3) return SIGNAL_NONE;
+    // Entry Logic mit saisonalen Filtern
+    if(!myposition.SelectByMagic(_Symbol, expert_ID) && 
+       first_entry() == 0 && 
+       !IsMonthBanned(time_struct.mon, bannedMonths1)){
         
-        // Multi-condition entry logic
-        bool rsi_oversold = m_rsi_values[0] < 30 && m_rsi_values[1] < 30;
-        bool macd_bullish = m_macd_main[0] > m_macd_signal[0] && 
-                           m_macd_main[1] <= m_macd_signal[1];
-        bool momentum_shift = m_rsi_values[0] > m_rsi_values[1];
-        
-        if(rsi_oversold && macd_bullish && momentum_shift) {
-            return SIGNAL_BUY;
+        if(time_struct.hour == TimeOpenHour1 && 
+           time_struct.min == TimeOpenMin1){
+            EnterShortPosition(SL1, CRV1);
         }
-        
-        bool rsi_overbought = m_rsi_values[0] > 70 && m_rsi_values[1] > 70;
-        bool macd_bearish = m_macd_main[0] < m_macd_signal[0] && 
-                           m_macd_main[1] >= m_macd_signal[1];
-        
-        if(rsi_overbought && macd_bearish) {
-            return SIGNAL_SELL;
-        }
-        
-        return SIGNAL_NONE;
     }
-};</code></pre>
+}</code></pre>
                             </div>
                         </div>
                         
                         <div class="tab-content" id="mql5-modal-risk">
                             <div class="code-block">
                                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                                <pre><code>// Advanced Risk Management System
-class CRiskManager {
-private:
-    double m_max_risk_percent;
-    double m_daily_loss_limit;
-    double m_current_daily_loss;
+                                <pre><code>// Fortgeschrittenes Position Sizing
+double calcLotsize(double stop){
+    // Risk-basierte Losgröße berechnen
+    double accountBalance = AccountInfoDouble(ACCOUNT_BALANCE);
+    double riskMoney = accountBalance * (risk / 100);
     
-public:
-    double CalculatePositionSize(double stop_loss_points) {
-        double account_balance = AccountInfoDouble(ACCOUNT_BALANCE);
-        double risk_amount = account_balance * m_max_risk_percent / 100;
-        
-        // Check daily loss limit
-        if(m_current_daily_loss >= m_daily_loss_limit) {
-            Print("Daily loss limit reached. No new positions allowed.");
-            return 0;
-        }
-        
-        // Calculate lot size based on risk
-        double tick_value = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_TICK_VALUE);
-        double lot_size = risk_amount / (stop_loss_points * tick_value);
-        
-        // Normalize lot size
-        double min_lot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN);
-        double max_lot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX);
-        double lot_step = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
-        
-        lot_size = MathFloor(lot_size / lot_step) * lot_step;
-        lot_size = MathMax(min_lot, MathMin(max_lot, lot_size));
-        
-        // Kelly Criterion adjustment
-        double win_rate = CalculateWinRate();
-        double avg_win_loss_ratio = CalculateWinLossRatio();
-        double kelly_percent = (win_rate * avg_win_loss_ratio - (1 - win_rate)) / avg_win_loss_ratio;
-        
-        if(kelly_percent > 0) {
-            lot_size *= MathMin(kelly_percent, 0.25); // Cap at 25% Kelly
-        }
-        
-        return lot_size;
+    // Kontraktgröße berücksichtigen
+    double contractSize = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+    double lotSize = riskMoney / (stop * contractSize);
+    
+    // Normalisierung basierend auf Broker-Anforderungen
+    double volumeStep = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
+    
+    if(volumeStep == 0.01){
+        lotSize = NormalizeDouble(lotSize, 2);
+    } else if(volumeStep == 0.1){
+        lotSize = NormalizeDouble(lotSize, 1);
+    } else {
+        lotSize = NormalizeDouble(lotSize, 0);
     }
     
-    bool CheckDrawdown() {
-        double current_equity = AccountInfoDouble(ACCOUNT_EQUITY);
-        double max_equity = GetMaxEquity();
-        double drawdown = (max_equity - current_equity) / max_equity * 100;
+    // Min/Max Lot Size Checks
+    double minLot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN);
+    double maxLot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX);
+    
+    lotSize = MathMax(minLot, MathMin(maxLot, lotSize));
+    
+    return lotSize;
+}
+
+// Breakeven und Trailing Stop Management
+void CheckBreakeven(double breakEvenPoints, double stopPush) {
+    double openPrice = PositionGetDouble(POSITION_PRICE_OPEN);
+    double currentPrice = PositionGetDouble(POSITION_PRICE_CURRENT);
+    double currentSL = PositionGetDouble(POSITION_SL);
+    double tp = PositionGetDouble(POSITION_TP);
+    
+    // Für Short Positionen
+    if(openPrice - currentPrice > breakEvenPoints && currentSL > openPrice) {
+        double newSL = openPrice - stopPush;
         
-        if(drawdown > 20) { // 20% max drawdown
-            Alert("Maximum drawdown exceeded! Stopping all trading.");
-            return false;
+        if(trade.PositionModify(_Symbol, newSL, tp)) {
+            Print("Breakeven aktiviert: SL moved to ", newSL);
         }
-        
-        return true;
     }
-};</code></pre>
+}</code></pre>
                             </div>
                         </div>
                         
-                        <div class="tab-content" id="mql5-modal-ml">
+                        <div class="tab-content" id="mql5-modal-filters">
                             <div class="code-block">
                                 <button class="copy-button" onclick="copyCode(this)">Copy</button>
-                                <pre><code>// Python ML Integration via Socket Communication
-class CMLPredictor {
-private:
-    int m_socket;
-    string m_python_server;
-    
-public:
-    bool ConnectToPython() {
-        m_socket = SocketCreate();
-        if(m_socket == INVALID_HANDLE) return false;
-        
-        if(!SocketConnect(m_socket, "127.0.0.1", 9090, 5000)) {
-            SocketClose(m_socket);
-            return false;
+                                <pre><code>// Saisonale Filter Implementation
+int bannedMonths1[] = {5,6,7,8,11,12};  // Montag
+int bannedMonths2[] = {1,2,6,7,10,11,12};  // Dienstag
+// ... weitere Arrays für andere Tage
+
+bool IsMonthBanned(int currentMonth, int &bannedMonthsArray[]) {
+    for(int i = 0; i < ArraySize(bannedMonthsArray); i++){
+        if(currentMonth == bannedMonthsArray[i]){
+            return true;
         }
+    }
+    return false;
+}
+
+// First Entry Check - Verhindert mehrfache Einträge am selben Tag
+int first_entry(){
+    // Historie für den aktuellen Tag abrufen
+    datetime dayStart = iTime(_Symbol, PERIOD_D1, 0);
+    HistorySelect(dayStart, TimeCurrent());
+    
+    int deals = HistoryDealsTotal();
+    
+    // Prüfe ob heute bereits gehandelt wurde
+    for(int count = 0; count < deals; count++){
+        ulong ticket = HistoryDealGetTicket(count);
         
-        return true;
+        if(HistoryDealGetString(ticket, DEAL_SYMBOL) == _Symbol && 
+           HistoryDealGetInteger(ticket, DEAL_MAGIC) == expert_ID) {
+            // Bereits heute gehandelt
+            return 1;
+        }
     }
     
-    double GetMLPrediction(double &features[]) {
-        if(m_socket == INVALID_HANDLE) return 0;
-        
-        // Prepare JSON data
-        string json = "{\"features\": [";
-        for(int i = 0; i < ArraySize(features); i++) {
-            json += DoubleToString(features[i], 5);
-            if(i < ArraySize(features) - 1) json += ",";
+    // Noch kein Trade heute
+    return 0;
+}
+
+// Performance Tracking
+void LogPerformance() {
+    double dayProfit = 0;
+    datetime dayStart = iTime(_Symbol, PERIOD_D1, 0);
+    
+    HistorySelect(dayStart, TimeCurrent());
+    
+    for(int i = 0; i < HistoryDealsTotal(); i++) {
+        ulong ticket = HistoryDealGetTicket(i);
+        if(HistoryDealGetInteger(ticket, DEAL_MAGIC) == expert_ID) {
+            dayProfit += HistoryDealGetDouble(ticket, DEAL_PROFIT);
         }
-        json += "]}";
-        
-        // Send to Python ML server
-        char req[];
-        StringToCharArray(json, req);
-        SocketSend(m_socket, req, StringLen(json));
-        
-        // Receive prediction
-        char response[];
-        int bytes = SocketRead(m_socket, response, 1024, 5000);
-        
-        if(bytes > 0) {
-            string result = CharArrayToString(response, 0, bytes);
-            return StringToDouble(result);
-        }
-        
-        return 0;
     }
     
-    void PrepareFeatures(double &features[]) {
-        ArrayResize(features, 20);
-        
-        // Technical indicators
-        features[0] = iRSI(_Symbol, PERIOD_H1, 14, PRICE_CLOSE);
-        features[1] = iATR(_Symbol, PERIOD_H1, 14);
-        
-        // Price action features
-        features[2] = (Close[0] - Open[0]) / Open[0]; // Current candle
-        features[3] = (High[0] - Low[0]) / Low[0];    // Volatility
-        
-        // Volume features
-        features[4] = Volume[0] / iMA(_Symbol, PERIOD_H1, 20, 0, MODE_SMA, VOLUME_TICK);
-        
-        // Market microstructure
-        features[5] = MarketInfo(_Symbol, MODE_SPREAD);
-        features[6] = AccountInfoDouble(ACCOUNT_PROFIT);
-        
-        // ... additional features
-    }
-};</code></pre>
+    Print("Tagesperformance: ", dayProfit, " ", AccountInfoString(ACCOUNT_CURRENCY));
+}</code></pre>
                             </div>
                         </div>
                     </div>
@@ -1220,53 +1213,347 @@ public:
                     <h3 class="section-heading">Performance Metriken</h3>
                     <div class="performance-metrics">
                         <div class="metric-card">
-                            <div class="metric-value">68.5%</div>
-                            <div class="metric-label">Win Rate</div>
+                            <div class="metric-value">0.2%</div>
+                            <div class="metric-label">Risk per Trade</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-value">2.4</div>
-                            <div class="metric-label">Sharpe Ratio</div>
+                            <div class="metric-value">1:5+</div>
+                            <div class="metric-label">Avg. Risk/Reward</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-value">12.3%</div>
-                            <div class="metric-label">Max Drawdown</div>
+                            <div class="metric-value">Adaptiv</div>
+                            <div class="metric-label">Position Sizing</div>
                         </div>
                         <div class="metric-card">
-                            <div class="metric-value">+145%</div>
-                            <div class="metric-label">YTD Return</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Screenshots/Gallery -->
-                <div class="project-section">
-                    <h3 class="section-heading">Screenshots & Visualisierungen</h3>
-                    <div class="project-gallery">
-                        <div class="gallery-item">
-                            <div style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a); height: 200px; display: flex; align-items: center; justify-content: center;">
-                                <span style="color: var(--primary);">Backtesting Results</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div style="background: linear-gradient(45deg, #2a2a2a, #1a1a1a); height: 200px; display: flex; align-items: center; justify-content: center;">
-                                <span style="color: var(--secondary);">Live Trading Dashboard</span>
-                            </div>
-                        </div>
-                        <div class="gallery-item">
-                            <div style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a); height: 200px; display: flex; align-items: center; justify-content: center;">
-                                <span style="color: var(--primary);">Performance Analytics</span>
-                            </div>
+                            <div class="metric-value">5</div>
+                            <div class="metric-label">Strategien</div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Links -->
                 <div class="project-section">
-                    <h3 class="section-heading">Projekt Links</h3>
-                    <div class="project-links" style="display: flex; gap: 20px;">
-                        <a href="#" class="project-link" style="padding: 15px 30px;">GitHub Repository</a>
-                        <a href="#" class="project-link" style="padding: 15px 30px;">Live Trading Results</a>
-                        <a href="#" class="project-link" style="padding: 15px 30px;">Documentation</a>
+                    <h3 class="section-heading">Hinweis</h3>
+                    <p style="color: var(--text-dim); font-style: italic;">
+                        Aus Sicherheitsgründen und zum Schutz der Handelsstrategie sind die exakten Parameter und Entry-Logik anonymisiert. 
+                        Der gezeigte Code demonstriert die technische Implementierung und Struktur des Systems.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- S&P 500 Analysis Modal -->
+    <div class="modal" id="sp500-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('sp500-modal')">×</button>
+                <h2 class="modal-title">S&P 500 Stock Analysis Tool</h2>
+                <div class="modal-meta">
+                    <span>📅 2024</span>
+                    <span>📊 500+ Aktien analysiert</span>
+                    <span>🐍 Python Data Science</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Überblick -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Umfassendes Python-Tool zur Analyse aller S&P 500 Aktien. Automatisiertes Web-Scraping der aktuellen Ticker-Liste von Wikipedia, 
+                    Batch-Download historischer Kursdaten, Risk-Return-Analyse mit Sharpe Ratio und Visualisierung von Sektor-Korrelationen. 
+                    Entwickelt mit Fehlerbehandlung und Rate-Limiting für robuste Datenerfassung.</p>
+                </div>
+
+                <!-- Tech Stack -->
+                <div class="project-section">
+                    <h3 class="section-heading">Technologie Stack</h3>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">yfinance</span>
+                        <span class="tech-badge">pandas</span>
+                        <span class="tech-badge">NumPy</span>
+                        <span class="tech-badge">matplotlib</span>
+                        <span class="tech-badge">seaborn</span>
+                        <span class="tech-badge">Jupyter Notebook</span>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="project-section">
+                    <h3 class="section-heading">Hauptfunktionen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h4>Web Scraping</h4>
+                            <p>Automatisches Abrufen der aktuellen S&P 500 Zusammensetzung von Wikipedia mit Fallback-Mechanismus</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📥</div>
+                            <h4>Batch Download</h4>
+                            <p>Effizienter Download von 500+ Aktien in Batches mit Retry-Logic und Error Handling</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h4>Performance Analyse</h4>
+                            <p>Berechnung von Annual Return, Volatilität und Sharpe Ratio für alle Aktien</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h4>Visualisierungen</h4>
+                            <p>Risk-Return Scatter Plots, Sektor-Heatmaps und Top-Performer Rankings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('sp500-modal', 'scraping')">Web Scraping</button>
+                            <button class="tab-button" onclick="switchTab('sp500-modal', 'download')">Batch Download</button>
+                            <button class="tab-button" onclick="switchTab('sp500-modal', 'analysis')">Analysis</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="sp500-modal-scraping">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def fetch_sp500_tickers_and_industries():
+    """Fetches S&P 500 tickers and industries with fallback mechanism"""
+    try:
+        # Primäre Quelle: Wikipedia
+        url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+        print("Fetching S&P 500 data from Wikipedia...")
+        tables = pd.read_html(url)
+        df = tables[0]
+        
+        # Ticker bereinigen (Berkshire Hathaway B -> BRK-B)
+        tickers = df['Symbol'].str.replace('.', '-', regex=False).tolist()
+        industries = df['GICS Sector'].tolist()
+        
+        print(f"Found {len(tickers)} tickers from Wikipedia")
+        
+    except Exception as e:
+        print(f"Wikipedia failed ({e}), using local backup...")
+        # Fallback auf lokale Daten
+        data = """Symbol,Security,GICS Sector
+        AAPL,Apple Inc.,Information Technology
+        MSFT,Microsoft,Information Technology
+        AMZN,Amazon,Consumer Discretionary
+        # ... weitere Backup-Daten
+        """
+        df = pd.read_csv(StringIO(data))
+        tickers = df['Symbol'].tolist()
+        industries = df['GICS Sector'].tolist()
+    
+    # Dictionary für schnellen Zugriff
+    return tickers, dict(zip(tickers, industries))</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="sp500-modal-download">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def download_ticker_data(tickers, start_date, end_date, batch_size=50, retries=3):
+    """Downloads stock data in batches with retry logic"""
+    all_data = {}
+    failed_tickers = []
+    
+    for i in range(0, len(tickers), batch_size):
+        batch = tickers[i:i+batch_size]
+        print(f"Downloading batch {i//batch_size + 1}/{(len(tickers)-1)//batch_size + 1}")
+        
+        for attempt in range(retries):
+            try:
+                # Multi-threaded download für Geschwindigkeit
+                data = yf.download(
+                    batch,
+                    start=start_date,
+                    end=end_date,
+                    group_by='ticker',
+                    progress=False,
+                    threads=True
+                )
+                
+                # Verarbeite heruntergeladene Daten
+                for ticker in batch:
+                    try:
+                        if len(batch) == 1:
+                            # Single ticker response
+                            close_prices = data['Close'].dropna()
+                        else:
+                            # Multi ticker response
+                            if ticker in data.columns.get_level_values(0):
+                                close_prices = data[ticker]['Close'].dropna()
+                            else:
+                                continue
+                                
+                        if not close_prices.empty:
+                            all_data[ticker] = close_prices
+                        else:
+                            failed_tickers.append(ticker)
+                            
+                    except Exception as e:
+                        print(f"  Error processing {ticker}: {str(e)}")
+                        failed_tickers.append(ticker)
+                        
+                break  # Erfolgreicher Download, keine weiteren Versuche
+                
+            except Exception as e:
+                wait_time = 2 ** attempt  # Exponential backoff
+                print(f"Batch failed (attempt {attempt+1}), retrying in {wait_time}s...")
+                time.sleep(wait_time)
+        else:
+            # Alle Versuche fehlgeschlagen
+            print("Batch permanently failed, skipping...")
+            failed_tickers.extend(batch)
+        
+        time.sleep(1)  # Rate limiting protection
+    
+    print(f"\nSuccessfully downloaded: {len(all_data)} tickers")
+    print(f"Failed downloads: {len(failed_tickers)} tickers")
+    
+    # Erstelle DataFrame aus erfolgreichen Downloads
+    close_df = pd.DataFrame(all_data)
+    return close_df, failed_tickers</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="sp500-modal-analysis">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def analyze_stocks(tickers, industries, start_date, end_date):
+    # Daten herunterladen
+    close, failed_tickers = download_ticker_data(
+        tickers, start_date, end_date, batch_size=50
+    )
+    
+    if close.empty:
+        print("No valid data available for analysis")
+        return
+    
+    # 1. Normalisierte Preise (Base 100)
+    first_valid = close.apply(lambda col: col[col.first_valid_index()])
+    normclose = close.div(first_valid) * 100
+    
+    # 2. Rendite-Risiko-Analyse
+    returns = close.pct_change().dropna()
+    
+    # Annualisierte Metriken
+    annual_return = returns.mean() * 252 * 100  # 252 Handelstage
+    annual_risk = returns.std() * np.sqrt(252) * 100
+    sharpe_ratio = annual_return / annual_risk
+    
+    # Summary DataFrame
+    summary = pd.DataFrame({
+        'Return': annual_return,
+        'Risk': annual_risk,
+        'Sharpe': sharpe_ratio,
+        'Industry': [industries.get(t, 'Unknown') for t in annual_return.index]
+    })
+    
+    # Top 20 Performer
+    top_20 = summary.nlargest(20, 'Return')
+    
+    # 3. Risk-Return Visualisierung
+    plt.figure(figsize=(12, 8))
+    
+    # Farben nach Industrie
+    industry_colors = {
+        ind: f'C{i}' for i, ind in enumerate(summary['Industry'].unique())
+    }
+    colors = [industry_colors.get(ind, 'gray') for ind in top_20['Industry']]
+    
+    # Scatter Plot
+    plt.scatter(
+        top_20['Risk'], 
+        top_20['Return'],
+        c=colors,
+        s=100,
+        alpha=0.8,
+        edgecolors='black',
+        linewidth=0.5
+    )
+    
+    # Ticker Labels
+    for ticker, row in top_20.iterrows():
+        plt.annotate(
+            ticker, 
+            xy=(row['Risk'], row['Return']),
+            xytext=(5, 5),
+            textcoords='offset points',
+            fontsize=9,
+            alpha=0.7
+        )
+    
+    # Formatting
+    plt.title("Risk-Return Profile (Top 20 by Return)", fontsize=16, pad=20)
+    plt.xlabel("Annual Risk (Standard Deviation %)", fontsize=12)
+    plt.ylabel("Annual Return (%)", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    
+    # Sharpe Ratio Isolinien hinzufügen
+    x_range = np.linspace(0, top_20['Risk'].max() * 1.1, 100)
+    for sharpe in [0.5, 1.0, 1.5, 2.0]:
+        plt.plot(x_range, sharpe * x_range, 'k--', alpha=0.3, linewidth=0.5)
+        plt.text(x_range[-1], sharpe * x_range[-1], f'SR={sharpe}', 
+                fontsize=8, alpha=0.5, va='bottom')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # 4. Sektor-Korrelationsanalyse
+    for industry in summary['Industry'].unique()[:3]:  # Top 3 Sektoren
+        industry_tickers = [
+            t for t, ind in industries.items() 
+            if ind == industry and t in returns.columns
+        ]
+        
+        if len(industry_tickers) < 2:
+            continue
+            
+        industry_returns = returns[industry_tickers].corr()
+        
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(
+            industry_returns,
+            annot=True,
+            fmt=".2f",
+            cmap="RdBu_r",
+            vmin=-1,
+            vmax=1,
+            center=0,
+            square=True,
+            linewidths=0.5,
+            cbar_kws={"shrink": 0.8}
+        )
+        plt.title(f"Correlation Matrix: {industry} Sector", fontsize=14, pad=20)
+        plt.tight_layout()
+        plt.show()</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="project-section">
+                    <h3 class="section-heading">Analyse-Ergebnisse</h3>
+                    <div class="project-gallery">
+                        <div class="gallery-item">
+                            <div style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a); height: 200px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: var(--primary);">Risk-Return Scatter Plot</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div style="background: linear-gradient(45deg, #2a2a2a, #1a1a1a); height: 200px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: var(--secondary);">Sector Correlations</span>
+                            </div>
+                        </div>
+                        <div class="gallery-item">
+                            <div style="background: linear-gradient(45deg, #1a1a1a, #2a2a2a); height: 200px; display: flex; align-items: center; justify-content: center;">
+                                <span style="color: var(--primary);">Top Performers</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1278,20 +1565,665 @@ public:
         <div class="modal-content">
             <div class="modal-header">
                 <button class="modal-close" onclick="closeModal('scientific-modal')">×</button>
-                <h2 class="modal-title">Scientific Computing with Python</h2>
+                <h2 class="modal-title">Scientific Computing Projects</h2>
                 <div class="modal-meta">
                     <span>📅 2024-2025</span>
                     <span>🎓 FreeCodeCamp Zertifizierung</span>
-                    <span>🐍 Python Expertise</span>
+                    <span>🐍 5 Projekte abgeschlossen</span>
                 </div>
             </div>
             <div class="modal-body">
-                <!-- Similar structure for this project -->
+                <!-- Überblick -->
                 <div class="project-section">
                     <h3 class="section-heading">Projekt Überblick</h3>
-                    <p>Eine Sammlung von wissenschaftlichen Computing-Projekten, die im Rahmen der FreeCodeCamp-Zertifizierung entwickelt wurden. Fokus auf numerische Methoden, Datenanalyse und algorithmische Problemlösung mit Python.</p>
+                    <p>Erfolgreich abgeschlossene Zertifizierung "Scientific Computing with Python" von FreeCodeCamp. 
+                    Die 5 Projekte decken verschiedene Bereiche der Programmierung ab: String-Manipulation, 
+                    Objektorientierte Programmierung, Algorithmen und Wahrscheinlichkeitsrechnung.</p>
                 </div>
-                <!-- Add more sections as needed -->
+
+                <!-- Projects Overview -->
+                <div class="project-section">
+                    <h3 class="section-heading">Abgeschlossene Projekte</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔢</div>
+                            <h4>Arithmetic Formatter</h4>
+                            <p>Formatiert arithmetische Probleme vertikal nebeneinander. Validiert Input, berechnet Ergebnisse und richtet alles korrekt aus.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⏰</div>
+                            <h4>Time Calculator</h4>
+                            <p>Addiert Zeitdauern zu Startzeiten und berechnet Endzeit mit Wochentag. Handhabt AM/PM Format und Tagesübergänge.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💰</div>
+                            <h4>Budget App</h4>
+                            <p>OOP-basierte Budget-Verwaltung mit Kategorien. Features: Deposits, Withdrawals, Transfers und Ausgaben-Visualisierung.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔷</div>
+                            <h4>Polygon Area Calculator</h4>
+                            <p>Geometrie-Rechner mit Rectangle und Square Klassen. Berechnet Area, Perimeter, Diagonal und ASCII-Visualisierung.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎲</div>
+                            <h4>Probability Calculator</h4>
+                            <p>Monte Carlo Simulation für Wahrscheinlichkeitsberechnungen. Simuliert das Ziehen von farbigen Bällen aus einem Hut.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('scientific-modal', 'arithmetic')">Arithmetic Formatter</button>
+                            <button class="tab-button" onclick="switchTab('scientific-modal', 'budget')">Budget App</button>
+                            <button class="tab-button" onclick="switchTab('scientific-modal', 'probability')">Probability Calculator</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="scientific-modal-arithmetic">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def arithmetic_arranger(problems, show_answers=False):
+    # Input Validierung
+    if len(problems) > 5:
+        return 'Error: Too many problems.'
+    
+    # Listen für formatierte Zeilen
+    first_line = []
+    second_line = []
+    third_line = []
+    fourth_line = []
+
+    for problem in problems:
+        # Operator finden
+        if "+" in problem:
+            operator = "+"
+        elif "-" in problem:
+            operator = "-"
+        else:
+            return "Error: Operator must be '+' or '-'."
+
+        # Zahlen extrahieren und validieren
+        left, right = problem.split(operator)
+        left = left.strip()
+        right = right.strip()
+
+        # Nur Ziffern erlaubt
+        if not left.isdigit() or not right.isdigit():
+            return 'Error: Numbers must only contain digits.'
+
+        # Max. 4 Stellen
+        if len(left) > 4 or len(right) > 4:
+            return 'Error: Numbers cannot be more than four digits.'
+
+        # Formatierung berechnen
+        longer_value = max(len(left), len(right)) + 2
+        
+        # Zeilen aufbauen
+        first_line.append(left.rjust(longer_value))
+        second_line.append(operator + " " + right.rjust(longer_value - 2))
+        third_line.append("-" * longer_value)
+        
+        # Optional: Ergebnis berechnen
+        if show_answers:
+            if operator == "+":
+                result = int(left) + int(right)
+            else:
+                result = int(left) - int(right)
+            fourth_line.append(str(result).rjust(longer_value))
+
+    # Ausgabe formatieren
+    arranged = "    ".join(first_line) + "\n" + \
+               "    ".join(second_line) + "\n" + \
+               "    ".join(third_line)
+    
+    if show_answers:
+        arranged += "\n" + "    ".join(fourth_line)
+    
+    return arranged
+
+# Beispiel Ausgabe:
+#    32      3801      45      123
+# + 698    -    2    + 43    +  49
+# -----    ------    ----    -----
+#   730      3799      88      172</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="scientific-modal-budget">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class Category:
+    def __init__(self, category):
+        self.ledger = []
+        self.category = category
+
+    def deposit(self, amount, description=""):
+        self.ledger.append({'amount': amount, 'description': description})
+
+    def withdraw(self, amount, description=""):
+        if self.check_funds(amount):
+            self.ledger.append({'amount': -amount, 'description': description})
+            return True
+        return False
+
+    def get_balance(self):
+        return sum(item['amount'] for item in self.ledger)
+
+    def transfer(self, amount, category):
+        if self.check_funds(amount):
+            self.withdraw(amount, f"Transfer to {category.category}")
+            category.deposit(amount, f"Transfer from {self.category}")
+            return True
+        return False
+
+    def check_funds(self, amount):
+        return amount <= self.get_balance()
+
+    def __str__(self):
+        # Title zentriert mit Sternchen
+        output = self.category.center(30, "*") + "\n"
+        
+        # Ledger Einträge formatieren
+        for entry in self.ledger:
+            description = entry["description"][:23]
+            amount = format(entry["amount"], ".2f").rjust(7)
+            output += f'{description:<23}{amount}\n'
+        
+        # Total hinzufügen
+        output += f'Total: {format(self.get_balance(), ".2f")}'
+        return output
+
+def create_spend_chart(categories):
+    # Ausgaben pro Kategorie berechnen
+    total_spent = 0
+    category_spent = []
+    
+    for category in categories:
+        spent = sum(-item['amount'] for item in category.ledger 
+                   if item['amount'] < 0)
+        category_spent.append(spent)
+        total_spent += spent
+    
+    # Prozentuale Anteile berechnen (auf 10er gerundet)
+    percentages = [(spent/total_spent * 100) // 10 * 10 
+                   for spent in category_spent]
+    
+    # Chart erstellen
+    chart = "Percentage spent by category\n"
+    
+    # Y-Achse (100 bis 0)
+    for level in range(100, -1, -10):
+        chart += f"{level:>3}|"
+        for percent in percentages:
+            chart += " o " if percent >= level else "   "
+        chart += " \n"
+    
+    # Horizontale Linie
+    chart += "    " + "-" * (len(categories) * 3 + 1) + "\n"
+    
+    # Kategorie-Namen vertikal
+    max_len = max(len(cat.category) for cat in categories)
+    for i in range(max_len):
+        chart += "     "
+        for cat in categories:
+            if i < len(cat.category):
+                chart += cat.category[i] + "  "
+            else:
+                chart += "   "
+        if i < max_len - 1:
+            chart += "\n"
+    
+    return chart</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="scientific-modal-probability">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>import random
+
+class Hat:
+    def __init__(self, **kwargs):
+        self.contents = []
+        # Bälle basierend auf Farbe und Anzahl hinzufügen
+        for color, count in kwargs.items():
+            self.contents.extend([color] * count)
+    
+    def draw(self, num_balls_drawn):
+        # Alle Bälle zurückgeben wenn mehr gezogen als vorhanden
+        if num_balls_drawn >= len(self.contents):
+            drawn = self.contents.copy()
+            self.contents.clear()
+            return drawn
+        
+        # Zufällig Bälle ziehen und entfernen
+        drawn_balls = []
+        for _ in range(num_balls_drawn):
+            index = random.randrange(len(self.contents))
+            drawn_balls.append(self.contents.pop(index))
+        
+        return drawn_balls
+
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
+    successful_experiments = 0
+    
+    # Original Hat-Zusammensetzung speichern
+    original_contents = {}
+    for ball in hat.contents:
+        original_contents[ball] = original_contents.get(ball, 0) + 1
+    
+    # Experimente durchführen
+    for _ in range(num_experiments):
+        # Neuen Hat für jedes Experiment erstellen
+        test_hat = Hat(**original_contents)
+        
+        # Bälle ziehen
+        drawn = test_hat.draw(num_balls_drawn)
+        
+        # Gezogene Bälle zählen
+        drawn_count = {}
+        for ball in drawn:
+            drawn_count[ball] = drawn_count.get(ball, 0) + 1
+        
+        # Prüfen ob Erwartungen erfüllt
+        success = True
+        for color, expected_count in expected_balls.items():
+            if drawn_count.get(color, 0) < expected_count:
+                success = False
+                break
+        
+        if success:
+            successful_experiments += 1
+    
+    # Wahrscheinlichkeit berechnen
+    return successful_experiments / num_experiments
+
+# Beispiel:
+# Hat mit 6 schwarzen, 4 roten, 3 grünen Bällen
+hat = Hat(black=6, red=4, green=3)
+
+# Wahrscheinlichkeit mindestens 2 rote und 1 grünen Ball
+# in 5 Zügen zu ziehen
+probability = experiment(
+    hat=hat,
+    expected_balls={'red': 2, 'green': 1},
+    num_balls_drawn=5,
+    num_experiments=2000
+)
+print(f"Probability: {probability:.2%}")</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learnings -->
+                <div class="project-section">
+                    <h3 class="section-heading">Wichtige Lernpunkte</h3>
+                    <ul style="line-height: 1.8; color: var(--text-dim);">
+                        <li>String-Formatierung und Alignment mit <code>rjust()</code>, <code>ljust()</code> und <code>center()</code></li>
+                        <li>Objektorientierte Programmierung mit Klassen, Vererbung und Magic Methods</li>
+                        <li>Error Handling und Input Validation für robuste Programme</li>
+                        <li>Monte Carlo Simulationen für Wahrscheinlichkeitsberechnungen</li>
+                        <li>Clean Code Prinzipien und PEP 8 Style Guidelines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Algorithms Modal -->
+    <div class="modal" id="algorithms-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal('algorithms-modal')">×</button>
+                <h2 class="modal-title">Advanced Algorithm Implementations</h2>
+                <div class="modal-meta">
+                    <span>📅 2024</span>
+                    <span>🧮 15+ Algorithmen</span>
+                    <span>🎯 Selbstständig gelöst</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <!-- Überblick -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Sammlung von fortgeschrittenen Algorithmen und Datenstrukturen, die ich während meiner Python-Lernreise implementiert habe. 
+                    Alle Aufgaben wurden mit minimalen Hinweisen selbstständig gelöst, was mein tiefes Verständnis der Konzepte demonstriert.</p>
+                </div>
+
+                <!-- Implemented Algorithms -->
+                <div class="project-section">
+                    <h3 class="section-heading">Implementierte Algorithmen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌳</div>
+                            <h4>Binary Search Tree</h4>
+                            <p>Vollständige BST Implementation mit Insert, Delete, Search und Inorder Traversal</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔐</div>
+                            <h4>Vigenère Cipher</h4>
+                            <p>Klassische Verschlüsselung mit polyalphabetischer Substitution</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛤️</div>
+                            <h4>Dijkstra's Algorithm</h4>
+                            <p>Shortest Path Algorithmus für gewichtete Graphen</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔀</div>
+                            <h4>Merge Sort</h4>
+                            <p>Effizienter Divide-and-Conquer Sortieralgorithmus</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📐</div>
+                            <h4>Vector Operations</h4>
+                            <p>R2/R3 Vektorraum mit Operator Overloading</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🗼</div>
+                            <h4>Tower of Hanoi</h4>
+                            <p>Rekursive Lösung des klassischen Puzzles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('algorithms-modal', 'bst')">Binary Search Tree</button>
+                            <button class="tab-button" onclick="switchTab('algorithms-modal', 'dijkstra')">Shortest Path</button>
+                            <button class="tab-button" onclick="switchTab('algorithms-modal', 'vector')">Vector Space</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="algorithms-modal-bst">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        self.root = self._insert(self.root, key)
+        
+    def _insert(self, node, key):
+        # Basis: Neuer Knoten
+        if node is None:
+            return TreeNode(key)
+        
+        # Rekursiv einfügen
+        if key < node.key:
+            node.left = self._insert(node.left, key)
+        elif key > node.key:
+            node.right = self._insert(node.right, key)
+            
+        return node
+
+    def delete(self, key):
+        self.root = self._delete(self.root, key)
+        
+    def _delete(self, node, key):
+        if node is None:
+            return node
+            
+        # Knoten finden
+        if key < node.key:
+            node.left = self._delete(node.left, key)
+        elif key > node.key:
+            node.right = self._delete(node.right, key)
+        else:
+            # Knoten gefunden - 3 Fälle
+            
+            # Fall 1: Keine Kinder
+            if node.left is None and node.right is None:
+                return None
+                
+            # Fall 2: Ein Kind
+            if node.left is None:
+                return node.right
+            if node.right is None:
+                return node.left
+                
+            # Fall 3: Zwei Kinder
+            # Finde In-Order Nachfolger (kleinster im rechten Subtree)
+            node.key = self._min_value(node.right)
+            # Lösche den Nachfolger
+            node.right = self._delete(node.right, node.key)
+            
+        return node
+    
+    def _min_value(self, node):
+        while node.left is not None:
+            node = node.left
+        return node.key
+    
+    def search(self, key):
+        return self._search(self.root, key)
+        
+    def _search(self, node, key):
+        if node is None or node.key == key:
+            return node
+            
+        if key < node.key:
+            return self._search(node.left, key)
+        
+        return self._search(node.right, key)
+    
+    def inorder_traversal(self):
+        result = []
+        self._inorder_traversal(self.root, result)
+        return result
+        
+    def _inorder_traversal(self, node, result):
+        if node:
+            self._inorder_traversal(node.left, result)
+            result.append(node.key)
+            self._inorder_traversal(node.right, result)
+
+# Beispiel Nutzung
+bst = BinarySearchTree()
+for value in [50, 30, 20, 40, 70, 60, 80]:
+    bst.insert(value)
+
+print("Inorder:", bst.inorder_traversal())  # [20, 30, 40, 50, 60, 70, 80]
+bst.delete(50)
+print("Nach Löschen von 50:", bst.inorder_traversal())</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="algorithms-modal-dijkstra">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def shortest_path(graph, start, target=''):
+    """
+    Dijkstra's Algorithm für kürzeste Pfade
+    
+    graph format: {
+        'A': [('B', 5), ('C', 3)],  # Knoten: [(Nachbar, Gewicht), ...]
+        'B': [('A', 5), ('D', 7)],
+        ...
+    }
+    """
+    # Initialisierung
+    unvisited = list(graph)
+    distances = {node: 0 if node == start else float('inf') for node in graph}
+    paths = {node: [] for node in graph}
+    paths[start] = [start]
+    
+    while unvisited:
+        # Wähle Knoten mit kleinster Distanz
+        current = min(unvisited, key=distances.get)
+        
+        # Wenn kleinste Distanz unendlich, sind restliche Knoten nicht erreichbar
+        if distances[current] == float('inf'):
+            break
+            
+        # Aktualisiere Distanzen zu Nachbarn
+        for neighbor, weight in graph[current]:
+            if neighbor in unvisited:
+                new_distance = distances[current] + weight
+                
+                if new_distance < distances[neighbor]:
+                    distances[neighbor] = new_distance
+                    paths[neighbor] = paths[current] + [neighbor]
+        
+        # Markiere als besucht
+        unvisited.remove(current)
+    
+    # Ausgabe formatieren
+    if target:
+        # Spezifisches Ziel
+        if distances[target] == float('inf'):
+            print(f"No path from {start} to {target}")
+        else:
+            print(f"\n{start}-{target} distance: {distances[target]}")
+            print(f"Path: {' -> '.join(paths[target])}")
+    else:
+        # Alle erreichbaren Knoten
+        for node in graph:
+            if node != start and distances[node] != float('inf'):
+                print(f"\n{start}-{node} distance: {distances[node]}")
+                print(f"Path: {' -> '.join(paths[node])}")
+    
+    return distances, paths
+
+# Beispiel Graph
+my_graph = {
+    'A': [('B', 5), ('C', 3), ('E', 11)],
+    'B': [('A', 5), ('C', 1), ('F', 2)],
+    'C': [('A', 3), ('B', 1), ('D', 1), ('E', 5)],
+    'D': [('C', 1), ('E', 9), ('F', 3)],
+    'E': [('A', 11), ('C', 5), ('D', 9)],
+    'F': [('B', 2), ('D', 3)]
+}
+
+# Kürzester Pfad von A nach F
+distances, paths = shortest_path(my_graph, 'A', 'F')
+# Output: A-F distance: 6
+#         Path: A -> C -> B -> F</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="algorithms-modal-vector">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class R2Vector:
+    """2D Vector mit vollständiger Operator-Unterstützung"""
+    
+    def __init__(self, *, x, y):
+        self.x = x
+        self.y = y
+    
+    def norm(self):
+        """Euklidische Norm (Länge) des Vektors"""
+        return sum(val**2 for val in vars(self).values())**0.5
+    
+    def __str__(self):
+        """String representation: (x, y)"""
+        return str(tuple(getattr(self, i) for i in vars(self)))
+    
+    def __repr__(self):
+        """Developer representation"""
+        arg_list = [f'{key}={val}' for key, val in vars(self).items()]
+        return f'{self.__class__.__name__}({", ".join(arg_list)})'
+    
+    def __add__(self, other):
+        """Vektor Addition: v1 + v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        kwargs = {i: getattr(self, i) + getattr(other, i) for i in vars(self)}
+        return self.__class__(**kwargs)
+    
+    def __sub__(self, other):
+        """Vektor Subtraktion: v1 - v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        kwargs = {i: getattr(self, i) - getattr(other, i) for i in vars(self)}
+        return self.__class__(**kwargs)
+    
+    def __mul__(self, other):
+        """Skalar-Multiplikation oder Dot-Product"""
+        if isinstance(other, (int, float)):
+            # Skalar-Multiplikation: v * 3
+            kwargs = {i: getattr(self, i) * other for i in vars(self)}
+            return self.__class__(**kwargs)
+        elif type(self) == type(other):
+            # Dot Product: v1 * v2
+            return sum(getattr(self, i) * getattr(other, i) for i in vars(self))
+        return NotImplemented
+    
+    def __eq__(self, other):
+        """Gleichheit: v1 == v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        return all(getattr(self, i) == getattr(other, i) for i in vars(self))
+    
+    def __lt__(self, other):
+        """Vergleich basierend auf Norm: v1 < v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        return self.norm() < other.norm()
+
+class R3Vector(R2Vector):
+    """3D Vector mit zusätzlicher z-Komponente und Kreuzprodukt"""
+    
+    def __init__(self, *, x, y, z):
+        super().__init__(x=x, y=y)
+        self.z = z
+    
+    def cross(self, other):
+        """Kreuzprodukt: v1 × v2"""
+        if type(self) != type(other):
+            return NotImplemented
+            
+        # Kreuzprodukt-Formel
+        kwargs = {
+            'x': self.y * other.z - self.z * other.y,
+            'y': self.z * other.x - self.x * other.z,
+            'z': self.x * other.y - self.y * other.x
+        }
+        
+        return self.__class__(**kwargs)
+
+# Beispiel Nutzung
+v1 = R3Vector(x=2, y=3, z=1)
+v2 = R3Vector(x=1, y=0, z=2)
+
+print(f"v1 = {v1}")                    # v1 = (2, 3, 1)
+print(f"v1 + v2 = {v1 + v2}")         # v1 + v2 = (3, 3, 3)
+print(f"v1 * v2 = {v1 * v2}")         # v1 * v2 = 4 (dot product)
+print(f"v1 × v2 = {v1.cross(v2)}")   # v1 × v2 = (6, -3, -3)
+print(f"|v1| = {v1.norm():.2f}")     # |v1| = 3.74</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Algorithms -->
+                <div class="project-section">
+                    <h3 class="section-heading">Weitere Implementierungen</h3>
+                    <ul style="line-height: 1.8; color: var(--text-dim);">
+                        <li><strong>Luhn Algorithm:</strong> Kreditkarten-Validierung mit Checksummen</li>
+                        <li><strong>Password Generator:</strong> Sichere Passwörter mit konfigurierbaren Anforderungen</li>
+                        <li><strong>Expense Tracker:</strong> Funktionale Programmierung mit filter() und map()</li>
+                        <li><strong>Square Root Bisection:</strong> Numerische Methode zur Wurzelberechnung</li>
+                        <li><strong>Equation Solver:</strong> Abstrakte Klassen für lineare und quadratische Gleichungen</li>
+                        <li><strong>Case Converter:</strong> PascalCase/camelCase zu snake_case Konvertierung</li>
+                        <li><strong>Projectile Calculator:</strong> Physik-Simulation mit Trajektorien-Berechnung</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
@@ -1411,6 +2343,68 @@ public:
         }
         
         setTimeout(typeWriter, 500);
+        
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Tab switching for code examples
+        function switchTab(modalId, tabName) {
+            const modal = document.getElementById(modalId);
+            const tabs = modal.querySelectorAll('.tab-content');
+            const buttons = modal.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(modalId + '-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentElement.querySelector('pre code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#00ff88';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
+            });
+        }
+        
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
