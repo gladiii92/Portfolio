@@ -3,38 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quant Developer Portfolio – David Heinke</title>
-
-    <!-- Performance & SEO -->
-    <meta name="description" content="Professional Quant Developer specializing in Python, Algorithmic Trading, MQL5 and Data Science. View my projects and skills.">
-    <meta name="keywords" content="quant developer, algorithmic trading, python, data science, MQL5, MetaTrader, financial programming">
-    <meta name="author" content="David Heinke">
-    <link rel="canonical" href="https://gladiii92.github.io/portfolio">
-
-    <!-- Open Graph -->
-    <meta property="og:title" content="Quant Developer Portfolio – David Heinke">
-    <meta property="og:description" content="Professional algorithmic trading solutions, Python data-science projects and advanced MQL5 strategies.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://gladiii92.github.io/portfolio">
-    <meta property="og:image" content="https://gladiii92.github.io/portfolio/og-image.png">
-
-    <!-- Schema.org -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "David Heinke",
-      "jobTitle": "Quant Developer",
-      "url": "https://gladiii92.github.io/portfolio",
-      "sameAs": [
-        "https://github.com/Gladiii92",
-        "https://www.linkedin.com/in/david-heinke-b45057353/"
-      ],
-      "knowsAbout": ["Python", "Algorithmic Trading", "Data Science", "MQL5", "MetaTrader", "Financial Programming"]
-    }
-    </script>
-
+    <title>Quant Developer Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --primary: #00ff88;
             --secondary: #0080ff;
@@ -42,40 +18,6 @@
             --bg-card: #1a1a1a;
             --text: #ffffff;
             --text-dim: #888888;
-            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --glow-primary: rgba(0, 255, 136, 0.3);
-            --glow-secondary: rgba(0, 128, 255, 0.3);
-        }
-
-        /* Light Theme */
-        .light-theme {
-            --bg-dark: #f8f9fa;
-            --bg-card: #ffffff;
-            --text: #212529;
-            --text-dim: #6c757d;
-            --glow-primary: rgba(0, 255, 136, 0.2);
-            --glow-secondary: rgba(0, 128, 255, 0.2);
-        }
-
-        @media (prefers-color-scheme: light) {
-            :root {
-                --bg-dark: #f8f9fa;
-                --bg-card: #ffffff;
-                --text: #212529;
-                --text-dim: #6c757d;
-                --glow-primary: rgba(0, 255, 136, 0.2);
-                --glow-secondary: rgba(0, 128, 255, 0.2);
-            }
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
         }
 
         body {
@@ -83,59 +25,6 @@
             background: var(--bg-dark);
             color: var(--text);
             overflow-x: hidden;
-            transition: var(--transition);
-        }
-
-        /* Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: rgba(0, 255, 136, 0.2);
-            z-index: 1001;
-        }
-
-        .scroll-progress::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            width: var(--scroll-width, 0%);
-            transition: width 0.1s;
-            box-shadow: 0 0 10px var(--primary);
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: 24px;
-            box-shadow: 0 4px 20px var(--glow-primary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 4px 20px var(--glow-primary); }
-            50% { box-shadow: 0 4px 30px var(--glow-primary), 0 0 20px var(--glow-primary); }
-            100% { box-shadow: 0 4px 20px var(--glow-primary); }
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 6px 30px var(--glow-primary), 0 0 30px var(--glow-primary);
         }
 
         /* Header */
@@ -143,68 +32,50 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(10px) saturate(180%);
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 20px 50px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .light-theme header {
-            background: rgba(248, 249, 250, 0.8);
-            border-bottom-color: rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid #333;
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1400px;
-            margin: 0 auto;
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: bold;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
         }
 
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             list-style: none;
         }
 
         .nav-links a {
             color: var(--text);
             text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-            font-weight: 500;
-            letter-spacing: 1px;
+            transition: color 0.3s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-            transform: translateX(-50%);
-            box-shadow: 0 0 10px var(--primary);
+        .nav-links a:hover {
+            color: var(--primary);
         }
 
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
+        /* Language Switcher */
         .lang-switcher {
             display: flex;
             gap: 10px;
@@ -213,27 +84,27 @@
 
         .lang-btn {
             background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid #333;
             color: var(--text);
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 5px 10px;
+            border-radius: 5px;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
             font-size: 14px;
-            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .lang-btn:hover {
             border-color: var(--primary);
             color: var(--primary);
-            box-shadow: 0 0 15px var(--glow-primary);
         }
 
         .lang-btn.active {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: var(--primary);
             color: var(--bg-dark);
-            border-color: transparent;
-            box-shadow: 0 0 20px var(--glow-primary);
+            border-color: var(--primary);
         }
 
         /* Hero Section */
@@ -244,127 +115,56 @@
             justify-content: center;
             position: relative;
             background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
-            overflow: hidden;
-        }
-
-        .light-theme .hero {
-            background: radial-gradient(ellipse at center, #e9ecef 0%, #f8f9fa 100%);
-        }
-
-        #particles-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
         }
 
         .hero-content {
             text-align: center;
             z-index: 2;
-            position: relative;
         }
 
         .hero h1 {
-            font-size: 72px;
+            font-size: 60px;
             margin-bottom: 20px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1s ease forwards;
-            letter-spacing: 3px;
-            text-shadow: 0 0 30px var(--glow-primary);
         }
 
         .hero p {
-            font-size: 28px;
+            font-size: 24px;
             color: var(--text-dim);
             margin-bottom: 40px;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1s ease 0.3s forwards;
-            letter-spacing: 1px;
         }
 
         .cta-button {
             display: inline-block;
-            padding: 20px 50px;
+            padding: 15px 40px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: var(--bg-dark);
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
-            font-size: 18px;
-            transition: var(--transition);
-            opacity: 0;
-            transform: translateY(50px);
-            animation: fadeInUp 1s ease 0.6s forwards;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 20px var(--glow-primary);
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .cta-button:hover::before {
-            width: 400px;
-            height: 400px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .cta-button:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 40px var(--glow-primary), 0 0 30px var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Sections */
-        .projects, .skills, .contact {
-            padding: 100px 50px;
-            max-width: 1400px;
-            margin: 0 auto;
+        /* Projects Section */
+        .projects {
+            padding: 100px 0;
+            background: var(--bg-dark);
         }
 
         .section-title {
             text-align: center;
-            font-size: 56px;
+            font-size: 48px;
             margin-bottom: 60px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 2px;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         /* Project Carousel */
@@ -378,24 +178,21 @@
         .carousel-wrapper {
             overflow: hidden;
             border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
         .carousel-track {
             display: flex;
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.5s ease;
         }
 
         .project-card {
             min-width: 100%;
             background: var(--bg-card);
             border-radius: 20px;
-            padding: 50px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border: 1px solid #333;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
         }
 
         .project-card::before {
@@ -413,8 +210,7 @@
         }
 
         .project-card:hover::before {
-            opacity: 1;
-            box-shadow: 0 0 30px var(--glow-primary);
+            opacity: 0.5;
         }
 
         .project-header {
@@ -422,64 +218,64 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
         .project-title {
-            font-size: 36px;
+            font-size: 32px;
             color: var(--primary);
-            letter-spacing: 1px;
         }
 
         .project-tags {
             display: flex;
             gap: 10px;
-            flex-wrap: wrap;
         }
 
         .tag {
-            padding: 8px 16px;
+            padding: 5px 15px;
             background: rgba(0, 255, 136, 0.1);
             border: 1px solid var(--primary);
             border-radius: 20px;
             font-size: 14px;
-            transition: var(--transition);
-        }
-
-        .tag:hover {
-            background: var(--primary);
-            color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--glow-primary);
         }
 
         .project-description {
             margin-bottom: 30px;
             color: var(--text-dim);
-            line-height: 1.8;
-            font-size: 18px;
+            line-height: 1.6;
         }
 
-        .view-details-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 30px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: var(--bg-dark);
+        .code-preview {
+            background: #0a0a0a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .code-preview pre {
+            color: var(--primary);
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .project-link {
+            padding: 10px 25px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
             text-decoration: none;
             border-radius: 25px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-            border: none;
-            font-size: 16px;
-            box-shadow: 0 5px 20px var(--glow-primary);
+            transition: all 0.3s;
         }
 
-        .view-details-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 40px var(--glow-primary), 0 0 30px var(--primary);
+        .project-link:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
         }
 
         /* Carousel Controls */
@@ -491,25 +287,20 @@
         }
 
         .carousel-btn {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: var(--bg-card);
-            border: 2px solid var(--primary);
+            border: 1px solid var(--primary);
             border-radius: 50%;
             color: var(--primary);
-            font-size: 24px;
+            font-size: 20px;
             cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s;
         }
 
         .carousel-btn:hover {
             background: var(--primary);
             color: var(--bg-dark);
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         .carousel-indicators {
@@ -520,117 +311,78 @@
         }
 
         .indicator {
-            width: 12px;
-            height: 12px;
-            background: rgba(255, 255, 255, 0.3);
+            width: 10px;
+            height: 10px;
+            background: #333;
             border-radius: 50%;
             cursor: pointer;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .indicator.active {
             background: var(--primary);
-            width: 40px;
-            border-radius: 6px;
-            box-shadow: 0 0 15px var(--glow-primary);
+            width: 30px;
+            border-radius: 5px;
         }
 
         /* Skills Section */
         .skills {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-card) 100%);
             padding: 100px 50px;
+            background: var(--bg-card);
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 30px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .skill-card {
-            background: var(--bg-card);
-            padding: 40px 30px;
-            border-radius: 20px;
+            background: var(--bg-dark);
+            padding: 30px;
+            border-radius: 15px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-            backdrop-filter: blur(10px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-            opacity: 0;
-            transition: opacity 0.3s;
+            border: 1px solid #333;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .skill-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px var(--glow-primary);
-        }
-
-        .skill-card:hover::before {
-            opacity: 1;
         }
 
         .skill-icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            filter: drop-shadow(0 0 10px var(--glow-primary));
-        }
-
-        .skill-card h3 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: var(--primary);
+            font-size: 48px;
+            margin-bottom: 15px;
         }
 
         /* Contact Section */
         .contact {
-            text-align: center;
             padding: 100px 50px;
-            background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-dark) 100%);
-        }
-
-        .contact p {
-            font-size: 20px;
-            color: var(--text-dim);
-            margin-bottom: 40px;
+            text-align: center;
         }
 
         .contact-links {
             display: flex;
             justify-content: center;
             gap: 30px;
-            flex-wrap: wrap;
+            margin-top: 40px;
         }
 
         .contact-link {
-            padding: 15px 40px;
+            padding: 15px 30px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: var(--bg-dark);
             text-decoration: none;
             border-radius: 30px;
             font-weight: bold;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 20px var(--glow-primary);
+            transition: transform 0.3s;
         }
 
         .contact-link:hover {
             transform: translateY(-3px);
-            box-shadow: 0 10px 40px var(--glow-primary), 0 0 30px var(--primary);
         }
 
         /* Modal Styles */
@@ -642,15 +394,8 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
             z-index: 2000;
             overflow-y: auto;
-            animation: fadeIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
 
         .modal-content {
@@ -659,47 +404,35 @@
             margin: 50px auto;
             background: var(--bg-card);
             border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid var(--primary);
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
         }
 
         .modal-header {
             background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 128, 255, 0.1));
             padding: 40px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
+            border-bottom: 1px solid #333;
         }
 
         .modal-close {
             position: absolute;
             top: 20px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+            width: 40px;
+            height: 40px;
             background: transparent;
-            border: 2px solid var(--primary);
+            border: 1px solid var(--primary);
             border-radius: 50%;
             color: var(--primary);
             font-size: 24px;
             cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            transition: all 0.3s;
         }
 
         .modal-close:hover {
             background: var(--primary);
             color: var(--bg-dark);
             transform: rotate(90deg);
-            box-shadow: 0 0 20px var(--glow-primary);
         }
 
         .modal-title {
@@ -714,7 +447,6 @@
             display: flex;
             gap: 30px;
             color: var(--text-dim);
-            flex-wrap: wrap;
         }
 
         .modal-body {
@@ -722,7 +454,7 @@
         }
 
         .project-section {
-            margin-bottom: 40px;
+            margin-bottom: 60px;
         }
 
         .section-heading {
@@ -739,8 +471,6 @@
             width: 4px;
             height: 30px;
             background: var(--primary);
-            border-radius: 2px;
-            box-shadow: 0 0 10px var(--glow-primary);
         }
 
         .tech-stack {
@@ -756,13 +486,176 @@
             border: 1px solid var(--primary);
             border-radius: 25px;
             font-size: 16px;
-            transition: var(--transition);
+            transition: all 0.3s;
         }
 
         .tech-badge:hover {
             background: var(--primary);
             color: var(--bg-dark);
-            box-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .feature-card {
+            background: var(--bg-dark);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .code-tabs {
+            margin-top: 30px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: transparent;
+            border: none;
+            color: var(--text-dim);
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .code-block {
+            background: #0a0a0a;
+            border-radius: 10px;
+            padding: 25px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .code-block pre {
+            margin: 0;
+            color: #f8f8f2;
+            font-family: 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .copy-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px 15px;
+            background: var(--primary);
+            color: var(--bg-dark);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .copy-button:hover {
+            background: var(--secondary);
+        }
+
+        .performance-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.1), rgba(0, 128, 255, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .metric-label {
+            color: var(--text-dim);
+            margin-top: 10px;
+        }
+
+        .project-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            background: var(--bg-dark);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .view-details-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 25px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            margin-top: 20px;
+        }
+
+        .view-details-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
         }
 
         /* Responsive */
@@ -776,64 +669,89 @@
             }
 
             .hero h1 {
-                font-size: 48px;
+                font-size: 36px;
             }
 
             .hero p {
-                font-size: 22px;
-            }
-
-            .projects, .skills, .contact {
-                padding: 50px 20px;
-            }
-
-            .section-title {
-                font-size: 40px;
+                font-size: 18px;
             }
 
             .project-card {
-                padding: 30px;
+                padding: 20px;
             }
 
             .skills-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             }
 
             .modal-content {
-                margin: 20px;
-                border-radius: 10px;
+                margin: 0;
+                border-radius: 0;
+                height: 100vh;
+                overflow-y: auto;
+            }
+
+            .modal-title {
+                font-size: 32px;
+            }
+
+            .modal-body {
+                padding: 20px;
             }
         }
 
         /* Animations */
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
 
         .floating {
             animation: float 3s ease-in-out infinite;
         }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
+        /* Background particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: particle-float 10s linear infinite;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.5;
+            }
+            90% {
+                opacity: 0.5;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Progress Bar -->
-    <div class="scroll-progress"></div>
-
-    <!-- Particles Canvas -->
-    <canvas id="particles-canvas"></canvas>
+    <!-- Particles Background -->
+    <div class="particles" id="particles"></div>
 
     <!-- Header -->
     <header>
@@ -842,9 +760,9 @@
             <div class="nav-container">
                 <ul class="nav-links">
                     <li><a href="#home" data-de="Start" data-en="Home">Home</a></li>
-                    <li><a href="#projects" data-de="Projekte" data-en="Projects">Projects</a></li>
+                    <li><a href="#projects" data-de="Projekte" data-en="Projects">Projekte</a></li>
                     <li><a href="#skills" data-de="Skills" data-en="Skills">Skills</a></li>
-                    <li><a href="#contact" data-de="Kontakt" data-en="Contact">Contact</a></li>
+                    <li><a href="#contact" data-de="Kontakt" data-en="Contact">Kontakt</a></li>
                 </ul>
                 <div class="lang-switcher">
                     <button class="lang-btn active" onclick="setLanguage('de')">🇩🇪 DE</button>
@@ -862,19 +780,19 @@
                data-en="Python | Algorithmic Trading | Data Science">Python | Algorithmic Trading | Data Science</p>
             <a href="#projects" class="cta-button" 
                data-de="Projekte ansehen" 
-               data-en="View Projects">View Projects</a>
+               data-en="View Projects">Projekte ansehen</a>
         </div>
     </section>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
-        <h2 class="section-title" data-de="Meine Projekte" data-en="My Projects">My Projects</h2>
+        <h2 class="section-title" data-de="Meine Projekte" data-en="My Projects">Meine Projekte</h2>
         
         <div class="carousel-container">
             <div class="carousel-wrapper">
                 <div class="carousel-track" id="carouselTrack">
                     <!-- Project 1: MQL5 Trading Algorithmen -->
-                    <div class="project-card fade-in">
+                    <div class="project-card">
                         <div class="project-header">
                             <h3 class="project-title">Automated DAX Trading System</h3>
                             <div class="project-tags">
@@ -886,7 +804,9 @@
                         <p class="project-description" 
                            data-de="Vollautomatisches Trading-System für den DAX mit zeitbasierten Strategien. Features: Dynamisches Risk Management (0.2% pro Trade), Trailing Stop-Loss, Break-Even Management und saisonale Filter. Backtested über mehrere Jahre mit konsistenten Ergebnissen."
                            data-en="Fully automated trading system for DAX with time-based strategies. Features: Dynamic Risk Management (0.2% per trade), Trailing Stop-Loss, Break-Even Management and seasonal filters. Backtested over multiple years with consistent results.">
-                            Fully automated trading system for DAX with time-based strategies. Features: Dynamic Risk Management (0.2% per trade), Trailing Stop-Loss, Break-Even Management and seasonal filters. Backtested over multiple years with consistent results.
+                            Vollautomatisches Trading-System für den DAX mit zeitbasierten Strategien. 
+                            Features: Dynamisches Risk Management (0.2% pro Trade), Trailing Stop-Loss, 
+                            Break-Even Management und saisonale Filter. Backtested über mehrere Jahre mit konsistenten Ergebnissen.
                         </p>
                         <div class="code-preview">
                             <pre><code>// Risk Management & Position Sizing
@@ -898,16 +818,27 @@ double calcLotsize(double stop){
         riskMoney = NormalizeDouble(riskMoney, 2);
     }
     return riskMoney;
+}
+
+// Breakeven & Trailing Stop Implementation
+if(PositionGetDouble(POSITION_PRICE_OPEN) - PositionGetDouble(POSITION_PRICE_CURRENT) > BE 
+   && PositionGetDouble(POSITION_SL) > PositionGetDouble(POSITION_PRICE_OPEN)){
+    trade.PositionModify(_Symbol, PositionGetDouble(POSITION_PRICE_OPEN) - SL_Push, 
+                        PositionGetDouble(POSITION_TP));
 }</code></pre>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="project-link" data-de="Code auf Anfrage" data-en="Code on Request">Code on Request</a>
+                            <a href="#" class="project-link" data-de="Code auf Anfrage" data-en="Code on Request">Code auf Anfrage</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('mql5-modal')">View Details →</button>
+                        <button class="view-details-btn" onclick="openModal('mql5-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
+                            Details ansehen →
+                        </button>
                     </div>
 
                     <!-- Project 2: S&P 500 Analysis -->
-                    <div class="project-card fade-in">
+                    <div class="project-card">
                         <div class="project-header">
                             <h3 class="project-title">S&P 500 Stock Analysis Tool</h3>
                             <div class="project-tags">
@@ -919,7 +850,9 @@ double calcLotsize(double stop){
                         <p class="project-description"
                            data-de="Umfassendes Analyse-Tool für S&P 500 Aktien. Automatisiertes Web-Scraping von Wikipedia, Batch-Download von Kursdaten, Risk-Return Analyse und Sektor-Korrelationen. Visualisiert die Top-Performer mit interaktiven Charts."
                            data-en="Comprehensive analysis tool for S&P 500 stocks. Automated web scraping from Wikipedia, batch download of price data, risk-return analysis and sector correlations. Visualizes top performers with interactive charts.">
-                            Comprehensive analysis tool for S&P 500 stocks. Automated web scraping from Wikipedia, batch download of price data, risk-return analysis and sector correlations. Visualizes top performers with interactive charts.
+                            Umfassendes Analyse-Tool für S&P 500 Aktien. Automatisiertes Web-Scraping von Wikipedia,
+                            Batch-Download von Kursdaten, Risk-Return Analyse und Sektor-Korrelationen.
+                            Visualisiert die Top-Performer mit interaktiven Charts.
                         </p>
                         <div class="code-preview">
                             <pre><code># Risk-Return Analysis mit Sharpe Ratio
@@ -930,17 +863,29 @@ def analyze_stocks(tickers, industries, start_date, end_date):
     # Performance Metriken berechnen
     returns = close.pct_change().dropna()
     annual_return = returns.mean() * 252 * 100
-    annual_risk = returns.std() * np.sqrt(252) * 100</code></pre>
+    annual_risk = returns.std() * np.sqrt(252) * 100
+    
+    # Visualisierung der Top 20 Performer
+    summary = pd.DataFrame({
+        'Return': annual_return,
+        'Risk': annual_risk,
+        'Sharpe': annual_return / annual_risk,
+        'Industry': [industries.get(t, 'Unknown') for t in annual_return.index]
+    })</code></pre>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub</a>
                             <a href="#" class="project-link">Jupyter Notebook</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('sp500-modal')">View Details →</button>
+                        <button class="view-details-btn" onclick="openModal('sp500-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
+                            Details ansehen →
+                        </button>
                     </div>
 
                     <!-- Project 3: FreeCodeCamp Scientific Computing -->
-                    <div class="project-card fade-in">
+                    <div class="project-card">
                         <div class="project-header">
                             <h3 class="project-title">Scientific Computing Projects</h3>
                             <div class="project-tags">
@@ -952,7 +897,9 @@ def analyze_stocks(tickers, industries, start_date, end_date):
                         <p class="project-description"
                            data-de="Sammlung von 5 Zertifizierungs-Projekten aus dem FreeCodeCamp Scientific Computing Kurs: Arithmetic Formatter, Time Calculator, Budget App mit Visualisierung, Polygon Area Calculator und Probability Calculator mit Monte Carlo Simulation."
                            data-en="Collection of 5 certification projects from the FreeCodeCamp Scientific Computing course: Arithmetic Formatter, Time Calculator, Budget App with visualization, Polygon Area Calculator and Probability Calculator with Monte Carlo simulation.">
-                            Collection of 5 certification projects from the FreeCodeCamp Scientific Computing course: Arithmetic Formatter, Time Calculator, Budget App with visualization, Polygon Area Calculator and Probability Calculator with Monte Carlo simulation.
+                            Sammlung von 5 Zertifizierungs-Projekten aus dem FreeCodeCamp Scientific Computing Kurs:
+                            Arithmetic Formatter, Time Calculator, Budget App mit Visualisierung, 
+                            Polygon Area Calculator und Probability Calculator mit Monte Carlo Simulation.
                         </p>
                         <div class="code-preview">
                             <pre><code># Monte Carlo Probability Calculator
@@ -976,13 +923,17 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub Repository</a>
-                            <a href="https://www.freecodecamp.org/fcc4865215c-2804-4799-9a48-c7661b87fa65" class="project-link">FreeCodeCamp Profile</a>
+                            <a href="https://www.freecodecamp.org/fcc4865215c-2804-4799-9a48-c7661b87fa65" class="project-link">FreeCodeCamp Profil</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('scientific-modal')">View Details →</button>
+                        <button class="view-details-btn" onclick="openModal('scientific-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
+                            Details ansehen →
+                        </button>
                     </div>
 
                     <!-- Project 4: Advanced Python Algorithms -->
-                    <div class="project-card fade-in">
+                    <div class="project-card">
                         <div class="project-header">
                             <h3 class="project-title">Advanced Algorithm Implementations</h3>
                             <div class="project-tags">
@@ -994,7 +945,9 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
                         <p class="project-description"
                            data-de="Implementierung fortgeschrittener Algorithmen und Datenstrukturen: Binary Search Tree, Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations und mehr. Fokus auf Clean Code und Effizienz."
                            data-en="Implementation of advanced algorithms and data structures: Binary Search Tree, Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations and more. Focus on clean code and efficiency.">
-                            Implementation of advanced algorithms and data structures: Binary Search Tree, Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations and more. Focus on clean code and efficiency.
+                            Implementierung fortgeschrittener Algorithmen und Datenstrukturen: Binary Search Tree,
+                            Vigenère Cipher, Dijkstra's Shortest Path, Merge Sort, Vector Space Operations
+                            und mehr. Fokus auf Clean Code und Effizienz.
                         </p>
                         <div class="code-preview">
                             <pre><code># Dijkstra's Shortest Path Algorithm
@@ -1016,13 +969,17 @@ def shortest_path(graph, start, target=''):
                         <div class="project-links">
                             <a href="https://github.com/Gladiii92" class="project-link">GitHub</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('algorithms-modal')">View Details →</button>
+                        <button class="view-details-btn" onclick="openModal('algorithms-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
+                            Details ansehen →
+                        </button>
                     </div>
 
                     <!-- Project 5: Gem Price Calculator -->
-                    <div class="project-card fade-in">
+                    <div class="project-card">
                         <div class="project-header">
-                            <h3 class="project-title" data-de="Edelstein Preisrechner" data-en="Gem Price Calculator">Gem Price Calculator</h3>
+                            <h3 class="project-title" data-de="Edelstein Preisrechner" data-en="Gem Price Calculator">Edelstein Preisrechner</h3>
                             <div class="project-tags">
                                 <span class="tag">JavaScript</span>
                                 <span class="tag">HTML/CSS</span>
@@ -1032,7 +989,8 @@ def shortest_path(graph, start, target=''):
                         <p class="project-description"
                            data-de="Interaktive Web-Anwendung zur Berechnung von Edelsteinpreisen. Features: Verschiedene Edelsteintypen, Qualitätsstufen, Karatgewicht-Berechnung und responsive Design. Praktisches Tool für Juweliere und Sammler."
                            data-en="Interactive web application for calculating gemstone prices. Features: Various gemstone types, quality levels, carat weight calculation and responsive design. Practical tool for jewelers and collectors.">
-                            Interactive web application for calculating gemstone prices. Features: Various gemstone types, quality levels, carat weight calculation and responsive design. Practical tool for jewelers and collectors.
+                            Interaktive Web-Anwendung zur Berechnung von Edelsteinpreisen. Features: Verschiedene Edelsteintypen,
+                            Qualitätsstufen, Karatgewicht-Berechnung und responsive Design. Praktisches Tool für Juweliere und Sammler.
                         </p>
                         <div class="code-preview">
                             <pre><code>// Preisberechnung basierend auf Edelstein-Eigenschaften
@@ -1053,7 +1011,11 @@ function calculateGemPrice(gemType, quality, carats) {
                             <a href="https://gladiii92.github.io/Gem-Web-App/" class="project-link">Live Demo</a>
                             <a href="https://github.com/Gladiii92/Gem-Web-App" class="project-link">GitHub</a>
                         </div>
-                        <button class="view-details-btn" onclick="openModal('gem-modal')">View Details →</button>
+                        <button class="view-details-btn" onclick="openModal('gem-modal')" 
+                                data-de="Details ansehen →" 
+                                data-en="View Details →">
+                            Details ansehen →
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1071,37 +1033,37 @@ function calculateGemPrice(gemType, quality, carats) {
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
-        <h2 class="section-title" data-de="Technische Skills" data-en="Technical Skills">Technical Skills</h2>
+        <h2 class="section-title" data-de="Technische Skills" data-en="Technical Skills">Technische Skills</h2>
         <div class="skills-grid">
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">🐍</div>
                 <h3>Python</h3>
-                <p data-de="Grundlagen, OOP, Algorithmen" data-en="Fundamentals, OOP, Algorithms">Fundamentals, OOP, Algorithms</p>
+                <p data-de="Grundlagen, OOP, Algorithmen" data-en="Fundamentals, OOP, Algorithms">Grundlagen, OOP, Algorithmen</p>
             </div>
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">📊</div>
                 <h3>Data Analysis</h3>
                 <p>pandas, NumPy, matplotlib</p>
             </div>
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">💹</div>
                 <h3>Trading</h3>
                 <p data-de="MQL5, MetaTrader 5, Backtesting" data-en="MQL5, MetaTrader 5, Backtesting">MQL5, MetaTrader 5, Backtesting</p>
             </div>
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">🌐</div>
                 <h3>Web Development</h3>
                 <p>HTML, CSS, JavaScript</p>
             </div>
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">🗄️</div>
                 <h3>Version Control</h3>
                 <p>Git, GitHub</p>
             </div>
-            <div class="skill-card fade-in">
+            <div class="skill-card">
                 <div class="skill-icon">🧮</div>
-                <h3 data-de="Algorithmen" data-en="Algorithms">Algorithms</h3>
-                <p data-de="Sortierung, Graphen, Datenstrukturen" data-en="Sorting, Graphs, Data Structures">Sorting, Graphs, Data Structures</p>
+                <h3 data-de="Algorithmen" data-en="Algorithms">Algorithmen</h3>
+                <p data-de="Sortierung, Graphen, Datenstrukturen" data-en="Sorting, Graphs, Data Structures">Sortierung, Graphen, Datenstrukturen</p>
             </div>
         </div>
     </section>
@@ -1110,16 +1072,13 @@ function calculateGemPrice(gemType, quality, carats) {
     <section class="contact" id="contact">
         <h2 class="section-title">Let's Connect</h2>
         <p data-de="Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!" 
-           data-en="Interested in collaboration? Let's get in touch!">Interested in collaboration? Let's get in touch!</p>
+           data-en="Interested in collaboration? Let's get in touch!">Interessiert an einer Zusammenarbeit? Lass uns in Kontakt treten!</p>
         <div class="contact-links">
             <a href="https://github.com/Gladiii92" class="contact-link" target="_blank">GitHub</a>
             <a href="https://www.linkedin.com/in/david-heinke-b45057353/" class="contact-link" target="_blank">LinkedIn</a>
             <a href="mailto:David_Heinke@gmx.de" class="contact-link">Email</a>
         </div>
     </section>
-
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
 
     <!-- Project Modals -->
     <!-- MQL5 Trading Modal -->
@@ -1130,30 +1089,234 @@ function calculateGemPrice(gemType, quality, carats) {
                 <h2 class="modal-title">Automated DAX Trading System</h2>
                 <div class="modal-meta">
                     <span>📅 2023-2025</span>
-                    <span data-de="⏱️ Live Trading seit 1 Jahr" data-en="⏱️ Live Trading for 1 year">⏱️ Live Trading for 1 year</span>
+                    <span data-de="⏱️ Live Trading seit 1 Jahr" data-en="⏱️ Live Trading for 1 year">⏱️ Live Trading seit 1 Jahr</span>
                     <span>📊 MetaTrader 5</span>
                 </div>
             </div>
             <div class="modal-body">
+                <!-- Überblick -->
                 <div class="project-section">
-                    <h3 class="section-heading" data-de="Projekt Überblick" data-en="Project Overview">Project Overview</h3>
+                    <h3 class="section-heading" data-de="Projekt Überblick" data-en="Project Overview">Projekt Überblick</h3>
                     <p data-de="Professionelles automatisiertes Trading-System für den DAX-Index auf MetaTrader 5. Das System nutzt zeitbasierte Strategien mit fortgeschrittenem Risk Management und saisonalen Filtern. Entwickelt mit umfangreichen Backtests und optimiert für verschiedene Marktbedingungen."
                        data-en="Professional automated trading system for the DAX index on MetaTrader 5. The system uses time-based strategies with advanced risk management and seasonal filters. Developed with extensive backtesting and optimized for various market conditions.">
-                        Professional automated trading system for the DAX index on MetaTrader 5. The system uses time-based strategies with advanced risk management and seasonal filters. Developed with extensive backtesting and optimized for various market conditions.
-                    </p>
+                       Professionelles automatisiertes Trading-System für den DAX-Index auf MetaTrader 5. Das System nutzt zeitbasierte Strategien mit fortgeschrittenem Risk Management und saisonalen Filtern. Entwickelt mit umfangreichen Backtests und optimiert für verschiedene Marktbedingungen.</p>
                 </div>
+
+                <!-- Tech Stack -->
                 <div class="project-section">
-                    <h3 class="section-heading" data-de="Technologie Stack" data-en="Technology Stack">Technology Stack</h3>
+                    <h3 class="section-heading" data-de="Technologie Stack" data-en="Technology Stack">Technologie Stack</h3>
                     <div class="tech-stack">
                         <span class="tech-badge">MQL5</span>
                         <span class="tech-badge">MetaTrader 5</span>
-                        <span class="tech-badge">C++ Style Syntax</span>
+                        <span class="tech-badge">C++ ähnliche Syntax</span>
                         <span class="tech-badge">Trade Library</span>
                         <span class="tech-badge">Time Series Analysis</span>
                     </div>
                 </div>
+
+                <!-- Features -->
                 <div class="project-section">
-                    <h3 class="section-heading">Performance Metrics</h3>
+                    <h3 class="section-heading">Hauptfunktionen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">⏰</div>
+                            <h4>Zeitbasierte Strategien</h4>
+                            <p>5 verschiedene Intraday-Strategien für jeden Wochentag mit optimierten Entry/Exit-Zeiten</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛡️</div>
+                            <h4>Risk Management</h4>
+                            <p>Dynamisches Position Sizing (0.2% Risk per Trade), automatisches Breakeven und Trailing Stop</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📅</div>
+                            <h4>Saisonale Filter</h4>
+                            <p>Monatsbasierte Filter zur Vermeidung ungünstiger Marktphasen basierend auf historischen Daten</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔄</div>
+                            <h4>Position Management</h4>
+                            <p>Automatisches Schließen bei Zeitablauf, Magic Number System für Multi-Strategy-Betrieb</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('mql5-modal', 'structure')">System Structure</button>
+                            <button class="tab-button" onclick="switchTab('mql5-modal', 'risk')">Risk Management</button>
+                            <button class="tab-button" onclick="switchTab('mql5-modal', 'filters')">Seasonal Filters</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="mql5-modal-structure">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>// Main Trading Logic Structure
+void OnTick(){
+    if(trade.RequestMagic() != expert_ID) 
+        trade.SetExpertMagicNumber(expert_ID);
+    
+    time = TimeCurrent();
+    TimeToStruct(time, time_struct);
+    
+    // Wochentag-basierte Strategieauswahl
+    switch(time_struct.day_of_week) {
+        case 1: // Montag
+            ExecuteMondayStrategy();
+            break;
+        case 2: // Dienstag
+            ExecuteTuesdayStrategy();
+            break;
+        // ... weitere Tage
+    }
+}
+
+void ExecuteMondayStrategy() {
+    // Position Management
+    if(myposition.SelectByMagic(_Symbol, expert_ID)){
+        // Zeit-basiertes Schließen
+        if(time_struct.hour >= TimeCloseHour1 && 
+           time_struct.min >= TimeCloseMin1){
+            trade.PositionClose(_Symbol);
+        }
+        
+        // Breakeven Management
+        CheckBreakeven(BE1, SL_Push1);
+    }
+    
+    // Entry Logic mit saisonalen Filtern
+    if(!myposition.SelectByMagic(_Symbol, expert_ID) && 
+       first_entry() == 0 && 
+       !IsMonthBanned(time_struct.mon, bannedMonths1)){
+        
+        if(time_struct.hour == TimeOpenHour1 && 
+           time_struct.min == TimeOpenMin1){
+            EnterShortPosition(SL1, CRV1);
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="mql5-modal-risk">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>// Fortgeschrittenes Position Sizing
+double calcLotsize(double stop){
+    // Risk-basierte Losgröße berechnen
+    double accountBalance = AccountInfoDouble(ACCOUNT_BALANCE);
+    double riskMoney = accountBalance * (risk / 100);
+    
+    // Kontraktgröße berücksichtigen
+    double contractSize = SymbolInfoDouble(_Symbol, SYMBOL_TRADE_CONTRACT_SIZE);
+    double lotSize = riskMoney / (stop * contractSize);
+    
+    // Normalisierung basierend auf Broker-Anforderungen
+    double volumeStep = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_STEP);
+    
+    if(volumeStep == 0.01){
+        lotSize = NormalizeDouble(lotSize, 2);
+    } else if(volumeStep == 0.1){
+        lotSize = NormalizeDouble(lotSize, 1);
+    } else {
+        lotSize = NormalizeDouble(lotSize, 0);
+    }
+    
+    // Min/Max Lot Size Checks
+    double minLot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MIN);
+    double maxLot = SymbolInfoDouble(_Symbol, SYMBOL_VOLUME_MAX);
+    
+    lotSize = MathMax(minLot, MathMin(maxLot, lotSize));
+    
+    return lotSize;
+}
+
+// Breakeven und Trailing Stop Management
+void CheckBreakeven(double breakEvenPoints, double stopPush) {
+    double openPrice = PositionGetDouble(POSITION_PRICE_OPEN);
+    double currentPrice = PositionGetDouble(POSITION_PRICE_CURRENT);
+    double currentSL = PositionGetDouble(POSITION_SL);
+    double tp = PositionGetDouble(POSITION_TP);
+    
+    // Für Short Positionen
+    if(openPrice - currentPrice > breakEvenPoints && currentSL > openPrice) {
+        double newSL = openPrice - stopPush;
+        
+        if(trade.PositionModify(_Symbol, newSL, tp)) {
+            Print("Breakeven aktiviert: SL moved to ", newSL);
+        }
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="mql5-modal-filters">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>// Saisonale Filter Implementation
+int bannedMonths1[] = {5,6,7,8,11,12};  // Montag
+int bannedMonths2[] = {1,2,6,7,10,11,12};  // Dienstag
+// ... weitere Arrays für andere Tage
+
+bool IsMonthBanned(int currentMonth, int &bannedMonthsArray[]) {
+    for(int i = 0; i < ArraySize(bannedMonthsArray); i++){
+        if(currentMonth == bannedMonthsArray[i]){
+            return true;
+        }
+    }
+    return false;
+}
+
+// First Entry Check - Verhindert mehrfache Einträge am selben Tag
+int first_entry(){
+    // Historie für den aktuellen Tag abrufen
+    datetime dayStart = iTime(_Symbol, PERIOD_D1, 0);
+    HistorySelect(dayStart, TimeCurrent());
+    
+    int deals = HistoryDealsTotal();
+    
+    // Prüfe ob heute bereits gehandelt wurde
+    for(int count = 0; count < deals; count++){
+        ulong ticket = HistoryDealGetTicket(count);
+        
+        if(HistoryDealGetString(ticket, DEAL_SYMBOL) == _Symbol && 
+           HistoryDealGetInteger(ticket, DEAL_MAGIC) == expert_ID) {
+            // Bereits heute gehandelt
+            return 1;
+        }
+    }
+    
+    // Noch kein Trade heute
+    return 0;
+}
+
+// Performance Tracking
+void LogPerformance() {
+    double dayProfit = 0;
+    datetime dayStart = iTime(_Symbol, PERIOD_D1, 0);
+    
+    HistorySelect(dayStart, TimeCurrent());
+    
+    for(int i = 0; i < HistoryDealsTotal(); i++) {
+        ulong ticket = HistoryDealGetTicket(i);
+        if(HistoryDealGetInteger(ticket, DEAL_MAGIC) == expert_ID) {
+            dayProfit += HistoryDealGetDouble(ticket, DEAL_PROFIT);
+        }
+    }
+    
+    Print("Tagesperformance: ", dayProfit, " ", AccountInfoString(ACCOUNT_CURRENCY));
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Performance Metrics -->
+                <div class="project-section">
+                    <h3 class="section-heading">Performance Metriken</h3>
                     <div class="performance-metrics">
                         <div class="metric-card">
                             <div class="metric-value">0.2%</div>
@@ -1169,8 +1332,20 @@ function calculateGemPrice(gemType, quality, carats) {
                         </div>
                         <div class="metric-card">
                             <div class="metric-value">5</div>
-                            <div class="metric-label">Strategies</div>
+                            <div class="metric-label">Strategien</div>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="project-section">
+                    <h3 class="section-heading">Hinweis</h3>
+                    <p style="color: var(--text-dim); font-style: italic;">
+                        Aus Sicherheitsgründen und zum Schutz der Handelsstrategie sind die exakten Parameter und Entry-Logik anonymisiert. 
+                        Der gezeigte Code demonstriert die technische Implementierung und Struktur des Systems.
+                    </p>
+                    <div class="project-links" style="display: flex; gap: 20px; margin-top: 20px;">
+                        <a href="#" class="project-link" style="padding: 15px 30px;" data-de="Code auf Anfrage" data-en="Code on Request">Code auf Anfrage</a>
                     </div>
                 </div>
             </div>
@@ -1190,12 +1365,17 @@ function calculateGemPrice(gemType, quality, carats) {
                 </div>
             </div>
             <div class="modal-body">
+                <!-- Überblick -->
                 <div class="project-section">
-                    <h3 class="section-heading">Project Overview</h3>
-                    <p>Comprehensive analysis tool for S&P 500 stocks. Automated web scraping of the current ticker list from Wikipedia, batch download of historical price data, risk-return analysis with Sharpe Ratio and visualization of sector correlations. Developed with error handling and rate limiting for robust data collection.</p>
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Umfassendes Python-Tool zur Analyse aller S&P 500 Aktien. Automatisiertes Web-Scraping der aktuellen Ticker-Liste von Wikipedia, 
+                    Batch-Download historischer Kursdaten, Risk-Return-Analyse mit Sharpe Ratio und Visualisierung von Sektor-Korrelationen. 
+                    Entwickelt mit Fehlerbehandlung und Rate-Limiting für robuste Datenerfassung.</p>
                 </div>
+
+                <!-- Tech Stack -->
                 <div class="project-section">
-                    <h3 class="section-heading">Technology Stack</h3>
+                    <h3 class="section-heading">Technologie Stack</h3>
                     <div class="tech-stack">
                         <span class="tech-badge">Python</span>
                         <span class="tech-badge">yfinance</span>
@@ -1205,6 +1385,273 @@ function calculateGemPrice(gemType, quality, carats) {
                         <span class="tech-badge">seaborn</span>
                         <span class="tech-badge">Jupyter Notebook</span>
                     </div>
+                </div>
+
+                <!-- Features -->
+                <div class="project-section">
+                    <h3 class="section-heading">Hauptfunktionen</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h4>Web Scraping</h4>
+                            <p>Automatisches Abrufen der aktuellen S&P 500 Zusammensetzung von Wikipedia mit Fallback-Mechanismus</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📥</div>
+                            <h4>Batch Download</h4>
+                            <p>Effizienter Download von 500+ Aktien in Batches mit Retry-Logic und Error Handling</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h4>Performance Analyse</h4>
+                            <p>Berechnung von Annual Return, Volatilität und Sharpe Ratio für alle Aktien</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎨</div>
+                            <h4>Visualisierungen</h4>
+                            <p>Risk-Return Scatter Plots, Sektor-Heatmaps und Top-Performer Rankings</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('sp500-modal', 'scraping')">Web Scraping</button>
+                            <button class="tab-button" onclick="switchTab('sp500-modal', 'download')">Batch Download</button>
+                            <button class="tab-button" onclick="switchTab('sp500-modal', 'analysis')">Analysis</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="sp500-modal-scraping">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def fetch_sp500_tickers_and_industries():
+    """Fetches S&P 500 tickers and industries with fallback mechanism"""
+    try:
+        # Primäre Quelle: Wikipedia
+        url = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
+        print("Fetching S&P 500 data from Wikipedia...")
+        tables = pd.read_html(url)
+        df = tables[0]
+        
+        # Ticker bereinigen (Berkshire Hathaway B -> BRK-B)
+        tickers = df['Symbol'].str.replace('.', '-', regex=False).tolist()
+        industries = df['GICS Sector'].tolist()
+        
+        print(f"Found {len(tickers)} tickers from Wikipedia")
+        
+    except Exception as e:
+        print(f"Wikipedia failed ({e}), using local backup...")
+        # Fallback auf lokale Daten
+        data = """Symbol,Security,GICS Sector
+        AAPL,Apple Inc.,Information Technology
+        MSFT,Microsoft,Information Technology
+        AMZN,Amazon,Consumer Discretionary
+        # ... weitere Backup-Daten
+        """
+        df = pd.read_csv(StringIO(data))
+        tickers = df['Symbol'].tolist()
+        industries = df['GICS Sector'].tolist()
+    
+    # Dictionary für schnellen Zugriff
+    return tickers, dict(zip(tickers, industries))</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="sp500-modal-download">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def download_ticker_data(tickers, start_date, end_date, batch_size=50, retries=3):
+    """Downloads stock data in batches with retry logic"""
+    all_data = {}
+    failed_tickers = []
+    
+    for i in range(0, len(tickers), batch_size):
+        batch = tickers[i:i+batch_size]
+        print(f"Downloading batch {i//batch_size + 1}/{(len(tickers)-1)//batch_size + 1}")
+        
+        for attempt in range(retries):
+            try:
+                # Multi-threaded download für Geschwindigkeit
+                data = yf.download(
+                    batch,
+                    start=start_date,
+                    end=end_date,
+                    group_by='ticker',
+                    progress=False,
+                    threads=True
+                )
+                
+                # Verarbeite heruntergeladene Daten
+                for ticker in batch:
+                    try:
+                        if len(batch) == 1:
+                            # Single ticker response
+                            close_prices = data['Close'].dropna()
+                        else:
+                            # Multi ticker response
+                            if ticker in data.columns.get_level_values(0):
+                                close_prices = data[ticker]['Close'].dropna()
+                            else:
+                                continue
+                                
+                        if not close_prices.empty:
+                            all_data[ticker] = close_prices
+                        else:
+                            failed_tickers.append(ticker)
+                            
+                    except Exception as e:
+                        print(f"  Error processing {ticker}: {str(e)}")
+                        failed_tickers.append(ticker)
+                        
+                break  # Erfolgreicher Download, keine weiteren Versuche
+                
+            except Exception as e:
+                wait_time = 2 ** attempt  # Exponential backoff
+                print(f"Batch failed (attempt {attempt+1}), retrying in {wait_time}s...")
+                time.sleep(wait_time)
+        else:
+            # Alle Versuche fehlgeschlagen
+            print("Batch permanently failed, skipping...")
+            failed_tickers.extend(batch)
+        
+        time.sleep(1)  # Rate limiting protection
+    
+    print(f"\nSuccessfully downloaded: {len(all_data)} tickers")
+    print(f"Failed downloads: {len(failed_tickers)} tickers")
+    
+    # Erstelle DataFrame aus erfolgreichen Downloads
+    close_df = pd.DataFrame(all_data)
+    return close_df, failed_tickers</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="sp500-modal-analysis">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def analyze_stocks(tickers, industries, start_date, end_date):
+    # Daten herunterladen
+    close, failed_tickers = download_ticker_data(
+        tickers, start_date, end_date, batch_size=50
+    )
+    
+    if close.empty:
+        print("No valid data available for analysis")
+        return
+    
+    # 1. Normalisierte Preise (Base 100)
+    first_valid = close.apply(lambda col: col[col.first_valid_index()])
+    normclose = close.div(first_valid) * 100
+    
+    # 2. Rendite-Risiko-Analyse
+    returns = close.pct_change().dropna()
+    
+    # Annualisierte Metriken
+    annual_return = returns.mean() * 252 * 100  # 252 Handelstage
+    annual_risk = returns.std() * np.sqrt(252) * 100
+    sharpe_ratio = annual_return / annual_risk
+    
+    # Summary DataFrame
+    summary = pd.DataFrame({
+        'Return': annual_return,
+        'Risk': annual_risk,
+        'Sharpe': sharpe_ratio,
+        'Industry': [industries.get(t, 'Unknown') for t in annual_return.index]
+    })
+    
+    # Top 20 Performer
+    top_20 = summary.nlargest(20, 'Return')
+    
+    # 3. Risk-Return Visualisierung
+    plt.figure(figsize=(12, 8))
+    
+    # Farben nach Industrie
+    industry_colors = {
+        ind: f'C{i}' for i, ind in enumerate(summary['Industry'].unique())
+    }
+    colors = [industry_colors.get(ind, 'gray') for ind in top_20['Industry']]
+    
+    # Scatter Plot
+    plt.scatter(
+        top_20['Risk'], 
+        top_20['Return'],
+        c=colors,
+        s=100,
+        alpha=0.8,
+        edgecolors='black',
+        linewidth=0.5
+    )
+    
+    # Ticker Labels
+    for ticker, row in top_20.iterrows():
+        plt.annotate(
+            ticker, 
+            xy=(row['Risk'], row['Return']),
+            xytext=(5, 5),
+            textcoords='offset points',
+            fontsize=9,
+            alpha=0.7
+        )
+    
+    # Formatting
+    plt.title("Risk-Return Profile (Top 20 by Return)", fontsize=16, pad=20)
+    plt.xlabel("Annual Risk (Standard Deviation %)", fontsize=12)
+    plt.ylabel("Annual Return (%)", fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.5)
+    
+    # Sharpe Ratio Isolinien hinzufügen
+    x_range = np.linspace(0, top_20['Risk'].max() * 1.1, 100)
+    for sharpe in [0.5, 1.0, 1.5, 2.0]:
+        plt.plot(x_range, sharpe * x_range, 'k--', alpha=0.3, linewidth=0.5)
+        plt.text(x_range[-1], sharpe * x_range[-1], f'SR={sharpe}', 
+                fontsize=8, alpha=0.5, va='bottom')
+    
+    plt.tight_layout()
+    plt.show()
+    
+    # 4. Sektor-Korrelationsanalyse
+    for industry in summary['Industry'].unique()[:3]:  # Top 3 Sektoren
+        industry_tickers = [
+            t for t, ind in industries.items() 
+            if ind == industry and t in returns.columns
+        ]
+        
+        if len(industry_tickers) < 2:
+            continue
+            
+        industry_returns = returns[industry_tickers].corr()
+        
+        plt.figure(figsize=(10, 8))
+        sns.heatmap(
+            industry_returns,
+            annot=True,
+            fmt=".2f",
+            cmap="RdBu_r",
+            vmin=-1,
+            vmax=1,
+            center=0,
+            square=True,
+            linewidths=0.5,
+            cbar_kws={"shrink": 0.8}
+        )
+        plt.title(f"Correlation Matrix: {industry} Sector", fontsize=14, pad=20)
+        plt.tight_layout()
+        plt.show()</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Features</h3>
+                    <p style="color: var(--text-dim);">
+                        Das Tool generiert umfassende Analysen inklusive Risk-Return Scatter Plots, Sektor-Korrelationsmatrizen 
+                        und Top-Performer Rankings. Die Visualisierungen nutzen matplotlib und seaborn für professionelle 
+                        Darstellung der Finanzdaten.
+                    </p>
                 </div>
             </div>
         </div>
@@ -1223,39 +1670,303 @@ function calculateGemPrice(gemType, quality, carats) {
                 </div>
             </div>
             <div class="modal-body">
+                <!-- Überblick -->
                 <div class="project-section">
-                    <h3 class="section-heading">Project Overview</h3>
-                    <p>Successfully completed the "Scientific Computing with Python" certification from FreeCodeCamp. The 5 projects cover various areas of programming: string manipulation, object-oriented programming, algorithms and probability theory.</p>
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Erfolgreich abgeschlossene Zertifizierung "Scientific Computing with Python" von FreeCodeCamp. 
+                    Die 5 Projekte decken verschiedene Bereiche der Programmierung ab: String-Manipulation, 
+                    Objektorientierte Programmierung, Algorithmen und Wahrscheinlichkeitsrechnung.</p>
                 </div>
+
+                <!-- Projects Overview -->
                 <div class="project-section">
-                    <h3 class="section-heading">Completed Projects</h3>
+                    <h3 class="section-heading">Abgeschlossene Projekte</h3>
                     <div class="feature-grid">
                         <div class="feature-card">
                             <div class="feature-icon">🔢</div>
                             <h4>Arithmetic Formatter</h4>
-                            <p>Formats arithmetic problems vertically side by side. Validates input, calculates results and aligns everything correctly.</p>
+                            <p>Formatiert arithmetische Probleme vertikal nebeneinander. Validiert Input, berechnet Ergebnisse und richtet alles korrekt aus.</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">⏰</div>
                             <h4>Time Calculator</h4>
-                            <p>Adds time durations to start times and calculates end time with weekdays. Handles AM/PM format and day transitions.</p>
+                            <p>Addiert Zeitdauern zu Startzeiten und berechnet Endzeit mit Wochentag. Handhabt AM/PM Format und Tagesübergänge.</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">💰</div>
                             <h4>Budget App</h4>
-                            <p>OOP-based budget management with categories. Features: Deposits, withdrawals, transfers and expense visualization.</p>
+                            <p>OOP-basierte Budget-Verwaltung mit Kategorien. Features: Deposits, Withdrawals, Transfers und Ausgaben-Visualisierung.</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🔷</div>
                             <h4>Polygon Area Calculator</h4>
-                            <p>Geometry calculator with Rectangle and Square classes. Calculates area, perimeter, diagonal and ASCII visualization.</p>
+                            <p>Geometrie-Rechner mit Rectangle und Square Klassen. Berechnet Area, Perimeter, Diagonal und ASCII-Visualisierung.</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🎲</div>
                             <h4>Probability Calculator</h4>
-                            <p>Monte Carlo simulation for probability calculations. Simulates drawing colored balls from a hat.</p>
+                            <p>Monte Carlo Simulation für Wahrscheinlichkeitsberechnungen. Simuliert das Ziehen von farbigen Bällen aus einem Hut.</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('scientific-modal', 'arithmetic')">Arithmetic Formatter</button>
+                            <button class="tab-button" onclick="switchTab('scientific-modal', 'budget')">Budget App</button>
+                            <button class="tab-button" onclick="switchTab('scientific-modal', 'probability')">Probability Calculator</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="scientific-modal-arithmetic">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def arithmetic_arranger(problems, show_answers=False):
+    # Input Validierung
+    if len(problems) > 5:
+        return 'Error: Too many problems.'
+    
+    # Listen für formatierte Zeilen
+    first_line = []
+    second_line = []
+    third_line = []
+    fourth_line = []
+
+    for problem in problems:
+        # Operator finden
+        if "+" in problem:
+            operator = "+"
+        elif "-" in problem:
+            operator = "-"
+        else:
+            return "Error: Operator must be '+' or '-'."
+
+        # Zahlen extrahieren und validieren
+        left, right = problem.split(operator)
+        left = left.strip()
+        right = right.strip()
+
+        # Nur Ziffern erlaubt
+        if not left.isdigit() or not right.isdigit():
+            return 'Error: Numbers must only contain digits.'
+
+        # Max. 4 Stellen
+        if len(left) > 4 or len(right) > 4:
+            return 'Error: Numbers cannot be more than four digits.'
+
+        # Formatierung berechnen
+        longer_value = max(len(left), len(right)) + 2
+        
+        # Zeilen aufbauen
+        first_line.append(left.rjust(longer_value))
+        second_line.append(operator + " " + right.rjust(longer_value - 2))
+        third_line.append("-" * longer_value)
+        
+        # Optional: Ergebnis berechnen
+        if show_answers:
+            if operator == "+":
+                result = int(left) + int(right)
+            else:
+                result = int(left) - int(right)
+            fourth_line.append(str(result).rjust(longer_value))
+
+    # Ausgabe formatieren
+    arranged = "    ".join(first_line) + "\n" + \
+               "    ".join(second_line) + "\n" + \
+               "    ".join(third_line)
+    
+    if show_answers:
+        arranged += "\n" + "    ".join(fourth_line)
+    
+    return arranged
+
+# Beispiel Ausgabe:
+#    32      3801      45      123
+# + 698    -    2    + 43    +  49
+# -----    ------    ----    -----
+#   730      3799      88      172</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="scientific-modal-budget">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class Category:
+    def __init__(self, category):
+        self.ledger = []
+        self.category = category
+
+    def deposit(self, amount, description=""):
+        self.ledger.append({'amount': amount, 'description': description})
+
+    def withdraw(self, amount, description=""):
+        if self.check_funds(amount):
+            self.ledger.append({'amount': -amount, 'description': description})
+            return True
+        return False
+
+    def get_balance(self):
+        return sum(item['amount'] for item in self.ledger)
+
+    def transfer(self, amount, category):
+        if self.check_funds(amount):
+            self.withdraw(amount, f"Transfer to {category.category}")
+            category.deposit(amount, f"Transfer from {self.category}")
+            return True
+        return False
+
+    def check_funds(self, amount):
+        return amount <= self.get_balance()
+
+    def __str__(self):
+        # Title zentriert mit Sternchen
+        output = self.category.center(30, "*") + "\n"
+        
+        # Ledger Einträge formatieren
+        for entry in self.ledger:
+            description = entry["description"][:23]
+            amount = format(entry["amount"], ".2f").rjust(7)
+            output += f'{description:<23}{amount}\n'
+        
+        # Total hinzufügen
+        output += f'Total: {format(self.get_balance(), ".2f")}'
+        return output
+
+def create_spend_chart(categories):
+    # Ausgaben pro Kategorie berechnen
+    total_spent = 0
+    category_spent = []
+    
+    for category in categories:
+        spent = sum(-item['amount'] for item in category.ledger 
+                   if item['amount'] < 0)
+        category_spent.append(spent)
+        total_spent += spent
+    
+    # Prozentuale Anteile berechnen (auf 10er gerundet)
+    percentages = [(spent/total_spent * 100) // 10 * 10 
+                   for spent in category_spent]
+    
+    # Chart erstellen
+    chart = "Percentage spent by category\n"
+    
+    # Y-Achse (100 bis 0)
+    for level in range(100, -1, -10):
+        chart += f"{level:>3}|"
+        for percent in percentages:
+            chart += " o " if percent >= level else "   "
+        chart += " \n"
+    
+    # Horizontale Linie
+    chart += "    " + "-" * (len(categories) * 3 + 1) + "\n"
+    
+    # Kategorie-Namen vertikal
+    max_len = max(len(cat.category) for cat in categories)
+    for i in range(max_len):
+        chart += "     "
+        for cat in categories:
+            if i < len(cat.category):
+                chart += cat.category[i] + "  "
+            else:
+                chart += "   "
+        if i < max_len - 1:
+            chart += "\n"
+    
+    return chart</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="scientific-modal-probability">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>import random
+
+class Hat:
+    def __init__(self, **kwargs):
+        self.contents = []
+        # Bälle basierend auf Farbe und Anzahl hinzufügen
+        for color, count in kwargs.items():
+            self.contents.extend([color] * count)
+    
+    def draw(self, num_balls_drawn):
+        # Alle Bälle zurückgeben wenn mehr gezogen als vorhanden
+        if num_balls_drawn >= len(self.contents):
+            drawn = self.contents.copy()
+            self.contents.clear()
+            return drawn
+        
+        # Zufällig Bälle ziehen und entfernen
+        drawn_balls = []
+        for _ in range(num_balls_drawn):
+            index = random.randrange(len(self.contents))
+            drawn_balls.append(self.contents.pop(index))
+        
+        return drawn_balls
+
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):
+    successful_experiments = 0
+    
+    # Original Hat-Zusammensetzung speichern
+    original_contents = {}
+    for ball in hat.contents:
+        original_contents[ball] = original_contents.get(ball, 0) + 1
+    
+    # Experimente durchführen
+    for _ in range(num_experiments):
+        # Neuen Hat für jedes Experiment erstellen
+        test_hat = Hat(**original_contents)
+        
+        # Bälle ziehen
+        drawn = test_hat.draw(num_balls_drawn)
+        
+        # Gezogene Bälle zählen
+        drawn_count = {}
+        for ball in drawn:
+            drawn_count[ball] = drawn_count.get(ball, 0) + 1
+        
+        # Prüfen ob Erwartungen erfüllt
+        success = True
+        for color, expected_count in expected_balls.items():
+            if drawn_count.get(color, 0) < expected_count:
+                success = False
+                break
+        
+        if success:
+            successful_experiments += 1
+    
+    # Wahrscheinlichkeit berechnen
+    return successful_experiments / num_experiments
+
+# Beispiel:
+# Hat mit 6 schwarzen, 4 roten, 3 grünen Bällen
+hat = Hat(black=6, red=4, green=3)
+
+# Wahrscheinlichkeit mindestens 2 rote und 1 grünen Ball
+# in 5 Zügen zu ziehen
+probability = experiment(
+    hat=hat,
+    expected_balls={'red': 2, 'green': 1},
+    num_balls_drawn=5,
+    num_experiments=2000
+)
+print(f"Probability: {probability:.2%}")</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Learnings -->
+                <div class="project-section">
+                    <h3 class="section-heading">Wichtige Lernpunkte</h3>
+                    <ul style="line-height: 1.8; color: var(--text-dim);">
+                        <li>String-Formatierung und Alignment mit <code>rjust()</code>, <code>ljust()</code> und <code>center()</code></li>
+                        <li>Objektorientierte Programmierung mit Klassen, Vererbung und Magic Methods</li>
+                        <li>Error Handling und Input Validation für robuste Programme</li>
+                        <li>Monte Carlo Simulationen für Wahrscheinlichkeitsberechnungen</li>
+                        <li>Clean Code Prinzipien und PEP 8 Style Guidelines</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1274,44 +1985,341 @@ function calculateGemPrice(gemType, quality, carats) {
                 </div>
             </div>
             <div class="modal-body">
+                <!-- Überblick -->
                 <div class="project-section">
-                    <h3 class="section-heading">Project Overview</h3>
-                    <p>Collection of advanced algorithms and data structures implemented during my Python learning journey. All tasks were solved independently with minimal hints, demonstrating deep understanding of the concepts.</p>
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Sammlung von fortgeschrittenen Algorithmen und Datenstrukturen, die ich während meiner Python-Lernreise implementiert habe. 
+                    Alle Aufgaben wurden mit minimalen Hinweisen selbstständig gelöst, was mein tiefes Verständnis der Konzepte demonstriert.</p>
                 </div>
+
+                <!-- Implemented Algorithms -->
                 <div class="project-section">
-                    <h3 class="section-heading">Implemented Algorithms</h3>
+                    <h3 class="section-heading">Implementierte Algorithmen</h3>
                     <div class="feature-grid">
                         <div class="feature-card">
                             <div class="feature-icon">🌳</div>
                             <h4>Binary Search Tree</h4>
-                            <p>Complete BST implementation with insert, delete, search and inorder traversal</p>
+                            <p>Vollständige BST Implementation mit Insert, Delete, Search und Inorder Traversal</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🔐</div>
                             <h4>Vigenère Cipher</h4>
-                            <p>Classic encryption with polyalphabetic substitution</p>
+                            <p>Klassische Verschlüsselung mit polyalphabetischer Substitution</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🛤️</div>
                             <h4>Dijkstra's Algorithm</h4>
-                            <p>Shortest path algorithm for weighted graphs</p>
+                            <p>Shortest Path Algorithmus für gewichtete Graphen</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🔀</div>
                             <h4>Merge Sort</h4>
-                            <p>Efficient divide-and-conquer sorting algorithm</p>
+                            <p>Effizienter Divide-and-Conquer Sortieralgorithmus</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">📐</div>
                             <h4>Vector Operations</h4>
-                            <p>R2/R3 vector space with operator overloading</p>
+                            <p>R2/R3 Vektorraum mit Operator Overloading</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">🗼</div>
                             <h4>Tower of Hanoi</h4>
-                            <p>Recursive solution to the classic puzzle</p>
+                            <p>Rekursive Lösung des klassischen Puzzles</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- Code Examples -->
+                <div class="project-section">
+                    <h3 class="section-heading">Code Beispiele</h3>
+                    <div class="code-tabs">
+                        <div class="tab-buttons">
+                            <button class="tab-button active" onclick="switchTab('algorithms-modal', 'bst')">Binary Search Tree</button>
+                            <button class="tab-button" onclick="switchTab('algorithms-modal', 'dijkstra')">Shortest Path</button>
+                            <button class="tab-button" onclick="switchTab('algorithms-modal', 'vector')">Vector Space</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="algorithms-modal-bst">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class TreeNode:
+    def __init__(self, key):
+        self.key = key
+        self.left = None
+        self.right = None
+
+class BinarySearchTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        self.root = self._insert(self.root, key)
+        
+    def _insert(self, node, key):
+        # Basis: Neuer Knoten
+        if node is None:
+            return TreeNode(key)
+        
+        # Rekursiv einfügen
+        if key < node.key:
+            node.left = self._insert(node.left, key)
+        elif key > node.key:
+            node.right = self._insert(node.right, key)
+            
+        return node
+
+    def delete(self, key):
+        self.root = self._delete(self.root, key)
+        
+    def _delete(self, node, key):
+        if node is None:
+            return node
+            
+        # Knoten finden
+        if key < node.key:
+            node.left = self._delete(node.left, key)
+        elif key > node.key:
+            node.right = self._delete(node.right, key)
+        else:
+            # Knoten gefunden - 3 Fälle
+            
+            # Fall 1: Keine Kinder
+            if node.left is None and node.right is None:
+                return None
+                
+            # Fall 2: Ein Kind
+            if node.left is None:
+                return node.right
+            if node.right is None:
+                return node.left
+                
+            # Fall 3: Zwei Kinder
+            # Finde In-Order Nachfolger (kleinster im rechten Subtree)
+            node.key = self._min_value(node.right)
+            # Lösche den Nachfolger
+            node.right = self._delete(node.right, node.key)
+            
+        return node
+    
+    def _min_value(self, node):
+        while node.left is not None:
+            node = node.left
+        return node.key
+    
+    def search(self, key):
+        return self._search(self.root, key)
+        
+    def _search(self, node, key):
+        if node is None or node.key == key:
+            return node
+            
+        if key < node.key:
+            return self._search(node.left, key)
+        
+        return self._search(node.right, key)
+    
+    def inorder_traversal(self):
+        result = []
+        self._inorder_traversal(self.root, result)
+        return result
+        
+    def _inorder_traversal(self, node, result):
+        if node:
+            self._inorder_traversal(node.left, result)
+            result.append(node.key)
+            self._inorder_traversal(node.right, result)
+
+# Beispiel Nutzung
+bst = BinarySearchTree()
+for value in [50, 30, 20, 40, 70, 60, 80]:
+    bst.insert(value)
+
+print("Inorder:", bst.inorder_traversal())  # [20, 30, 40, 50, 60, 70, 80]
+bst.delete(50)
+print("Nach Löschen von 50:", bst.inorder_traversal())</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="algorithms-modal-dijkstra">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>def shortest_path(graph, start, target=''):
+    """
+    Dijkstra's Algorithm für kürzeste Pfade
+    
+    graph format: {
+        'A': [('B', 5), ('C', 3)],  # Knoten: [(Nachbar, Gewicht), ...]
+        'B': [('A', 5), ('D', 7)],
+        ...
+    }
+    """
+    # Initialisierung
+    unvisited = list(graph)
+    distances = {node: 0 if node == start else float('inf') for node in graph}
+    paths = {node: [] for node in graph}
+    paths[start] = [start]
+    
+    while unvisited:
+        # Wähle Knoten mit kleinster Distanz
+        current = min(unvisited, key=distances.get)
+        
+        # Wenn kleinste Distanz unendlich, sind restliche Knoten nicht erreichbar
+        if distances[current] == float('inf'):
+            break
+            
+        # Aktualisiere Distanzen zu Nachbarn
+        for neighbor, weight in graph[current]:
+            if neighbor in unvisited:
+                new_distance = distances[current] + weight
+                
+                if new_distance < distances[neighbor]:
+                    distances[neighbor] = new_distance
+                    paths[neighbor] = paths[current] + [neighbor]
+        
+        # Markiere als besucht
+        unvisited.remove(current)
+    
+    # Ausgabe formatieren
+    if target:
+        # Spezifisches Ziel
+        if distances[target] == float('inf'):
+            print(f"No path from {start} to {target}")
+        else:
+            print(f"\n{start}-{target} distance: {distances[target]}")
+            print(f"Path: {' -> '.join(paths[target])}")
+    else:
+        # Alle erreichbaren Knoten
+        for node in graph:
+            if node != start and distances[node] != float('inf'):
+                print(f"\n{start}-{node} distance: {distances[node]}")
+                print(f"Path: {' -> '.join(paths[node])}")
+    
+    return distances, paths
+
+# Beispiel Graph
+my_graph = {
+    'A': [('B', 5), ('C', 3), ('E', 11)],
+    'B': [('A', 5), ('C', 1), ('F', 2)],
+    'C': [('A', 3), ('B', 1), ('D', 1), ('E', 5)],
+    'D': [('C', 1), ('E', 9), ('F', 3)],
+    'E': [('A', 11), ('C', 5), ('D', 9)],
+    'F': [('B', 2), ('D', 3)]
+}
+
+# Kürzester Pfad von A nach F
+distances, paths = shortest_path(my_graph, 'A', 'F')
+# Output: A-F distance: 6
+#         Path: A -> C -> B -> F</code></pre>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="algorithms-modal-vector">
+                            <div class="code-block">
+                                <button class="copy-button" onclick="copyCode(this)">Copy</button>
+                                <pre><code>class R2Vector:
+    """2D Vector mit vollständiger Operator-Unterstützung"""
+    
+    def __init__(self, *, x, y):
+        self.x = x
+        self.y = y
+    
+    def norm(self):
+        """Euklidische Norm (Länge) des Vektors"""
+        return sum(val**2 for val in vars(self).values())**0.5
+    
+    def __str__(self):
+        """String representation: (x, y)"""
+        return str(tuple(getattr(self, i) for i in vars(self)))
+    
+    def __repr__(self):
+        """Developer representation"""
+        arg_list = [f'{key}={val}' for key, val in vars(self).items()]
+        return f'{self.__class__.__name__}({", ".join(arg_list)})'
+    
+    def __add__(self, other):
+        """Vektor Addition: v1 + v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        kwargs = {i: getattr(self, i) + getattr(other, i) for i in vars(self)}
+        return self.__class__(**kwargs)
+    
+    def __sub__(self, other):
+        """Vektor Subtraktion: v1 - v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        kwargs = {i: getattr(self, i) - getattr(other, i) for i in vars(self)}
+        return self.__class__(**kwargs)
+    
+    def __mul__(self, other):
+        """Skalar-Multiplikation oder Dot-Product"""
+        if isinstance(other, (int, float)):
+            # Skalar-Multiplikation: v * 3
+            kwargs = {i: getattr(self, i) * other for i in vars(self)}
+            return self.__class__(**kwargs)
+        elif type(self) == type(other):
+            # Dot Product: v1 * v2
+            return sum(getattr(self, i) * getattr(other, i) for i in vars(self))
+        return NotImplemented
+    
+    def __eq__(self, other):
+        """Gleichheit: v1 == v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        return all(getattr(self, i) == getattr(other, i) for i in vars(self))
+    
+    def __lt__(self, other):
+        """Vergleich basierend auf Norm: v1 < v2"""
+        if type(self) != type(other):
+            return NotImplemented
+        return self.norm() < other.norm()
+
+class R3Vector(R2Vector):
+    """3D Vector mit zusätzlicher z-Komponente und Kreuzprodukt"""
+    
+    def __init__(self, *, x, y, z):
+        super().__init__(x=x, y=y)
+        self.z = z
+    
+    def cross(self, other):
+        """Kreuzprodukt: v1 × v2"""
+        if type(self) != type(other):
+            return NotImplemented
+            
+        # Kreuzprodukt-Formel
+        kwargs = {
+            'x': self.y * other.z - self.z * other.y,
+            'y': self.z * other.x - self.x * other.z,
+            'z': self.x * other.y - self.y * other.x
+        }
+        
+        return self.__class__(**kwargs)
+
+# Beispiel Nutzung
+v1 = R3Vector(x=2, y=3, z=1)
+v2 = R3Vector(x=1, y=0, z=2)
+
+print(f"v1 = {v1}")                    # v1 = (2, 3, 1)
+print(f"v1 + v2 = {v1 + v2}")         # v1 + v2 = (3, 3, 3)
+print(f"v1 * v2 = {v1 * v2}")         # v1 * v2 = 4 (dot product)
+print(f"v1 × v2 = {v1.cross(v2)}")   # v1 × v2 = (6, -3, -3)
+print(f"|v1| = {v1.norm():.2f}")     # |v1| = 3.74</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Algorithms -->
+                <div class="project-section">
+                    <h3 class="section-heading">Weitere Implementierungen</h3>
+                    <ul style="line-height: 1.8; color: var(--text-dim);">
+                        <li><strong>Luhn Algorithm:</strong> Kreditkarten-Validierung mit Checksummen</li>
+                        <li><strong>Password Generator:</strong> Sichere Passwörter mit konfigurierbaren Anforderungen</li>
+                        <li><strong>Expense Tracker:</strong> Funktionale Programmierung mit filter() und map()</li>
+                        <li><strong>Square Root Bisection:</strong> Numerische Methode zur Wurzelberechnung</li>
+                        <li><strong>Equation Solver:</strong> Abstrakte Klassen für lineare und quadratische Gleichungen</li>
+                        <li><strong>Case Converter:</strong> PascalCase/camelCase zu snake_case Konvertierung</li>
+                        <li><strong>Projectile Calculator:</strong> Physik-Simulation mit Trajektorien-Berechnung</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -1322,7 +2330,7 @@ function calculateGemPrice(gemType, quality, carats) {
         <div class="modal-content">
             <div class="modal-header">
                 <button class="modal-close" onclick="closeModal('gem-modal')">×</button>
-                <h2 class="modal-title" data-de="Edelstein Preisrechner" data-en="Gem Price Calculator">Gem Price Calculator</h2>
+                <h2 class="modal-title">Edelstein Preisrechner</h2>
                 <div class="modal-meta">
                     <span>📅 2024</span>
                     <span>💎 Web Application</span>
@@ -1330,277 +2338,220 @@ function calculateGemPrice(gemType, quality, carats) {
                 </div>
             </div>
             <div class="modal-body">
+                <!-- Überblick -->
                 <div class="project-section">
-                    <h3 class="section-heading">Project Overview</h3>
-                    <p>Interactive web application for calculating gemstone prices. Developed for jewelers, collectors and traders who want to quickly and accurately determine prices based on gemstone type, quality and carat weight.</p>
+                    <h3 class="section-heading">Projekt Überblick</h3>
+                    <p>Eine praktische Web-Anwendung zur Berechnung von Edelsteinpreisen. Entwickelt für Juweliere, Sammler und Händler, 
+                    die schnell und präzise Preise basierend auf Edelsteintyp, Qualität und Karatgewicht ermitteln möchten.</p>
                 </div>
+
+                <!-- Tech Stack -->
                 <div class="project-section">
-                    <h3 class="section-heading">Features</h3>
+                    <h3 class="section-heading">Technologie Stack</h3>
+                    <div class="tech-stack">
+                        <span class="tech-badge">HTML5</span>
+                        <span class="tech-badge">CSS3</span>
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">Responsive Design</span>
+                        <span class="tech-badge">GitHub Pages</span>
+                    </div>
+                </div>
+
+                <!-- Features -->
+                <div class="project-section">
+                    <h3 class="section-heading">Hauptfunktionen</h3>
                     <div class="feature-grid">
                         <div class="feature-card">
                             <div class="feature-icon">💎</div>
-                            <h4>Gemstone Selection</h4>
-                            <p>Supports various gemstone types including diamonds, rubies, emeralds and more</p>
+                            <h4>Edelstein-Auswahl</h4>
+                            <p>Unterstützt verschiedene Edelsteintypen wie Diamanten, Rubine, Smaragde und mehr</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">⭐</div>
-                            <h4>Quality Levels</h4>
-                            <p>Three quality levels (Excellent, Good, Fair) with corresponding price multipliers</p>
+                            <h4>Qualitätsstufen</h4>
+                            <p>Drei Qualitätsstufen (Excellent, Good, Fair) mit entsprechenden Preismultiplikatoren</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">⚖️</div>
-                            <h4>Carat Calculation</h4>
-                            <p>Accurate price calculation based on carat weight with real-time updates</p>
+                            <h4>Karat-Berechnung</h4>
+                            <p>Präzise Preisberechnung basierend auf Karatgewicht mit Echtzeit-Updates</p>
                         </div>
                         <div class="feature-card">
                             <div class="feature-icon">📱</div>
                             <h4>Responsive Design</h4>
-                            <p>Optimized for all devices - desktop, tablet and mobile</p>
+                            <p>Optimiert für alle Geräte - Desktop, Tablet und Mobile</p>
                         </div>
+                    </div>
+                </div>
+
+                <!-- Links -->
+                <div class="project-section">
+                    <h3 class="section-heading">Projekt Links</h3>
+                    <div class="project-links" style="display: flex; gap: 20px;">
+                        <a href="https://gladiii92.github.io/Gem-Web-App/" class="project-link" style="padding: 15px 30px;">Live Demo</a>
+                        <a href="https://github.com/Gladiii92/Gem-Web-App" class="project-link" style="padding: 15px 30px;">GitHub Repository</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Theme Toggle -->
-    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌓</button>
-
-    <!-- JavaScript -->
     <script>
-        // Theme Management
-        function toggleTheme() {
-            document.body.classList.toggle('light-theme');
-            const isLight = document.body.classList.contains('light-theme');
-            localStorage.setItem('theme', isLight ? 'light' : 'dark');
-            updateThemeToggle();
-        }
-
-        function updateThemeToggle() {
-            const toggle = document.querySelector('.theme-toggle');
-            const isLight = document.body.classList.contains('light-theme');
-            toggle.textContent = isLight ? '🌙' : '☀️';
-        }
-
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'light' || (!savedTheme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-            document.body.classList.add('light-theme');
-        }
-        updateThemeToggle();
-
-        // Scroll Progress
-        function updateScrollProgress() {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.body.scrollHeight - window.innerHeight;
-            const scrollPercent = (scrollTop / docHeight) * 100;
-            document.querySelector('.scroll-progress').style.setProperty('--scroll-width', `${scrollPercent}%`);
-        }
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe elements
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Particles Canvas
-        const canvas = document.getElementById('particles-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.size = Math.random() * 2 + 1;
-                this.opacity = Math.random() * 0.5 + 0.2;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = document.body.classList.contains('light-theme') 
-                    ? `rgba(0, 128, 255, ${this.opacity})`
-                    : `rgba(0, 255, 136, ${this.opacity})`;
-                ctx.fill();
+        // Particles Animation
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 10 + 's';
+                particle.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                particlesContainer.appendChild(particle);
             }
         }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < 100; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-            requestAnimationFrame(animateParticles);
-        }
-
-        initParticles();
-        animateParticles();
+        
+        createParticles();
 
         // Carousel Functionality
         const track = document.getElementById('carouselTrack');
-        const slides = document.querySelectorAll('.project-card');
+        const slides = track.children;
         const nextBtn = document.getElementById('nextBtn');
         const prevBtn = document.getElementById('prevBtn');
         const indicatorsContainer = document.getElementById('indicators');
-
+        
         let currentSlide = 0;
-
+        
         // Create indicators
-        slides.forEach((_, index) => {
+        for (let i = 0; i < slides.length; i++) {
             const indicator = document.createElement('div');
             indicator.classList.add('indicator');
-            if (index === 0) indicator.classList.add('active');
-            indicator.addEventListener('click', () => goToSlide(index));
+            if (i === 0) indicator.classList.add('active');
+            indicator.addEventListener('click', () => goToSlide(i));
             indicatorsContainer.appendChild(indicator);
-        });
-
+        }
+        
         const indicators = indicatorsContainer.children;
-
+        
         function updateSlidePosition() {
             track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            Array.from(indicators).forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentSlide);
-            });
+            
+            // Update indicators
+            for (let i = 0; i < indicators.length; i++) {
+                indicators[i].classList.remove('active');
+            }
+            indicators[currentSlide].classList.add('active');
         }
-
+        
         function goToSlide(slideIndex) {
             currentSlide = slideIndex;
             updateSlidePosition();
         }
-
+        
         function nextSlide() {
             currentSlide = (currentSlide + 1) % slides.length;
             updateSlidePosition();
         }
-
+        
         function prevSlide() {
             currentSlide = (currentSlide - 1 + slides.length) % slides.length;
             updateSlidePosition();
         }
-
+        
         nextBtn.addEventListener('click', nextSlide);
         prevBtn.addEventListener('click', prevSlide);
-
+        
         // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') nextSlide();
             if (e.key === 'ArrowLeft') prevSlide();
-            if (e.key === 'Escape') {
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                });
-            }
         });
-
+        
         // Touch/Swipe support
         let touchStartX = 0;
         let touchEndX = 0;
-
+        
         track.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         });
-
+        
         track.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         });
-
+        
         function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) nextSlide();
-                else prevSlide();
-            }
+            if (touchEndX < touchStartX - 50) nextSlide();
+            if (touchEndX > touchStartX + 50) prevSlide();
         }
-
+        
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
+                    behavior: 'smooth'
                 });
             });
         });
-
-        // Language Switching (DE/EN)
+        
+        // Typing animation for hero title
+        const heroTitle = document.querySelector('.hero h1');
+        const text = heroTitle.textContent;
+        heroTitle.textContent = '';
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < text.length) {
+                heroTitle.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            }
+        }
+        
+        setTimeout(typeWriter, 500);
+        
+        // Language Switching
         let currentLang = 'de';
-
+        
         function setLanguage(lang) {
             currentLang = lang;
             
             // Update button states
             document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.includes(lang.toUpperCase()));
+                btn.classList.remove('active');
+                if (btn.textContent.includes(lang.toUpperCase())) {
+                    btn.classList.add('active');
+                }
             });
-
+            
             // Update all elements with language data
             document.querySelectorAll('[data-de][data-en]').forEach(element => {
-                const text = element.getAttribute(`data-${lang}`);
-                if (text) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.placeholder = text;
-                    } else {
-                        element.textContent = text;
-                    }
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    element.placeholder = element.getAttribute(`data-${lang}`);
+                } else {
+                    element.textContent = element.getAttribute(`data-${lang}`);
                 }
             });
         }
-
+        
+        // Set initial language to German
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('de');
+        });
+        
         // Modal Functions
         function openModal(modalId) {
             document.getElementById(modalId).style.display = 'block';
             document.body.style.overflow = 'hidden';
         }
-
+        
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
             document.body.style.overflow = 'auto';
         }
-
+        
         // Close modal when clicking outside
         window.onclick = function(event) {
             if (event.target.classList.contains('modal')) {
@@ -1608,23 +2559,49 @@ function calculateGemPrice(gemType, quality, carats) {
                 document.body.style.overflow = 'auto';
             }
         }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            setLanguage('de');
-            updateScrollProgress();
-        });
-
-        // Performance Monitoring
-        if ('performance' in window) {
-            window.addEventListener('load', () => {
-                const perfData = performance.getEntriesByType('navigation')[0];
-                console.log(`Page loaded in ${Math.round(perfData.loadEventEnd - perfData.loadEventStart)}ms`);
+        
+        // Tab switching for code examples
+        function switchTab(modalId, tabName) {
+            const modal = document.getElementById(modalId);
+            const tabs = modal.querySelectorAll('.tab-content');
+            const buttons = modal.querySelectorAll('.tab-button');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(modalId + '-' + tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Copy code functionality
+        function copyCode(button) {
+            const codeBlock = button.parentElement.querySelector('pre code');
+            const text = codeBlock.textContent;
+            
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = 'Copied!';
+                button.style.background = '#00ff88';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '';
+                }, 2000);
             });
         }
-
-        // Event listeners
-        window.addEventListener('scroll', updateScrollProgress);
+        
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.style.display = 'none';
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
